@@ -1,0 +1,12 @@
+targets:
+  $default:
+    builders:
+      artemis:
+        options:
+          schema_mapping:
+            - output: lib/graphql/user.dart
+              schema: lib/graphql/schema.graphql
+              queries_glob: lib/graphql/query/get_login.graphql
+            - output: lib/graphql/repos.dart
+              schema: lib/graphql/schema.graphql
+              queries_glob: lib/graphql/query/list_repos.graphql

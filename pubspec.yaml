@@ -23,13 +23,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # graphQL
-  ferry: ^0.4.1 # graphQL client
-  gql_http_link: ^0.2.9 #link library for graphQL client; TODO: look into alternatives (e.g. websocket)
-  # graphQL data caching
-  hive: ^1.4.4 # offline data cache
-  hive_flutter: ^0.3.1 # offline data cache flutter extension
-  ferry_hive_store: ^0.1.0 # ferry integration for hive store
+  # graphQL client
+  graphql: ^3.1.0
+
+  # graphQL code generation
+  json_serializable: ^3.0.0
+  equatable: ^1.0.1
+  meta: ">=1.0.0 <2.0.0" # only if you have non nullable fields
+  gql: ">=0.2.3 <1.0.0"
+
   # dependency injection/service locator
   get_it: ^4.0.4 # for dependency injection
 
@@ -40,8 +42,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner:
-  gql_build: ^0.1.0
+  artemis: ">=5.1.0 <6.0.0"
+  build_runner: ^1.5.0
+
+dependency_overrides:
+  analyzer: "0.39.14" # fix to be able to use codegen, should be removed later https://github.com/flutter/flutter/issues/62240
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

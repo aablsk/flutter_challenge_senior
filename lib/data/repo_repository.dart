@@ -1,35 +1,56 @@
 import 'package:flutter_challenge_senior/constants.dart';
-import 'package:gql_http_link/gql_http_link.dart';
-import 'package:ferry/ferry.dart';
-import 'package:ferry_hive_store/ferry_hive_store.dart';
-import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:flutter_challenge_senior/graphql/repos.dart';
+import 'package:flutter_challenge_senior/graphql/user.dart';
+import 'package:graphql/client.dart';
 
 class GqlRepository {
-  Client client;
+  GraphQLClient _client;
 
   Future<GqlRepository> init(String accessToken) async {
-    this.client = Client(
-      link: HttpLink(GITHUB_GRAPHQL_API_URL, defaultHeaders: {
-        'Authorization': 'bearer $accessToken',
-      }),
-      cache: await initCache("gql"),
-      options: ClientOptions(
-        addTypename: true,
-      ),
+    final httpLink = HttpLink(
+      uri: GITHUB_GRAPHQL_API_URL,
+    ); // TODO: look into websocket links
+    final authLink = AuthLink(getToken: () => "bearer $accessToken");
+    final link = authLink.concat(httpLink);
+    this._client = GraphQLClient(
+      link: link,
+      cache: OptimisticCache(dataIdFromObject: _typenameDataIdFromObject),
     );
     return this;
   }
 
-  Future<Cache> initCache(String boxName) async {
-    Hive.initFlutter();
-    final box = await Hive.openBox(boxName);
-    final store = HiveStore(box);
-    // TODO: look into cache options
-    final cache = Cache(
-      dataStore: store,
-      addTypename: true,
+  String _typenameDataIdFromObject(Object object) {
+    if (object is Map<String, Object> &&
+        object.containsKey('__typename') &&
+        object.containsKey('id')) {
+      return "${object['__typename']}/${object['id']}";
+    }
+    return null;
+  }
+
+  void getReposForUser(String login) async {
+    final options =
+        QueryOptions(documentNode: ListReposQuery().document, variables: {
+      'login': login,
+    });
+
+    final result = await this._client.query(options);
+
+    if (result.hasException) {
+      print('Error' + result.exception.toString());
+    }
+    // print(result?.data?.user?.keys);
+    result?.data['user']['repositories']['nodes'].forEach((repo) => print(
+        ListRepos$Query$User$RepositoryConnection$Repository.fromJson(repo)
+            .toJson()));
+
+    print(result);
+  }
+
+  Future<String> getLogin() async {
+    final options = QueryOptions(
+      documentNode: GetLoginQuery().document,
     );
-    return cache;
+    final result = await this._client.query(options);
   }
 }
