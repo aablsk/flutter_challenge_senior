@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_challenge_senior/service_locator.dart';
 import 'package:flutter_challenge_senior/ui/theme/light_theme.dart';
 
 void main() {
+  setupServices();
   runApp(MyApp());
 }
 
