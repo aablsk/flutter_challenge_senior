@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_challenge_senior/data/repo_repository.dart';
+import 'package:flutter_challenge_senior/data/graphql_repository.dart';
 import 'package:flutter_challenge_senior/service_locator.dart';
 import 'package:flutter_challenge_senior/ui/theme/light_theme.dart';
 
@@ -74,12 +74,15 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () => sl.get<GqlRepository>().getReposForUser('aablsk'),
+          onPressed: () => sl
+              .get<GraphQLRepository>()
+              .getRepoList()
+              .then((res) => print(res.toJson())),
           tooltip: 'Increment',
           child: Icon(Icons.add),
         ), // This trailing comma makes auto-formatting nicer for build methods.
       ),
-      future: sl.getAsync<GqlRepository>(),
+      future: sl.getAsync<GraphQLRepository>(),
     );
   }
 }

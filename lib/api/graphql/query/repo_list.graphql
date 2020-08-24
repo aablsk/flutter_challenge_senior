@@ -1,0 +1,30 @@
+query repo_list($first: Int = 100){
+  viewer {
+    repositories(first: $first, orderBy: {field: UPDATED_AT, direction: DESC}) {
+      totalCount
+      edges {
+        cursor
+      }
+      nodes {
+        name
+        id
+        description
+        issues(first: 3, orderBy: {field: UPDATED_AT, direction: DESC}) {
+          totalCount
+          nodes {
+            title
+            closed
+            id
+            assignees(first: 1) {
+              nodes {
+                avatarUrl(size: 4)
+                id
+                login
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

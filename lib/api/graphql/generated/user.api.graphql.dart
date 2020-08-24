@@ -5,7 +5,7 @@ import 'package:artemis/artemis.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:equatable/equatable.dart';
 import 'package:gql/ast.dart';
-part 'user.graphql.g.dart';
+part 'user.api.graphql.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class GetLogin$Query$User with EquatableMixin {

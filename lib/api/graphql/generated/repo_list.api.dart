@@ -1,2 +1,2 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-export 'repos.graphql.dart';
+export 'repo_list.api.graphql.dart';

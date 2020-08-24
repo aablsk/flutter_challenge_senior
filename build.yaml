@@ -4,9 +4,9 @@ targets:
       artemis:
         options:
           schema_mapping:
-            - output: lib/graphql/user.dart
-              schema: lib/graphql/schema.graphql
-              queries_glob: lib/graphql/query/get_login.graphql
-            - output: lib/graphql/repos.dart
-              schema: lib/graphql/schema.graphql
-              queries_glob: lib/graphql/query/list_repos.graphql
+            - output: lib/api/graphql/generated/user.api.dart
+              schema: lib/api/graphql/schema.graphql
+              queries_glob: lib/api/graphql/query/get_login.graphql
+            - output: lib/api/graphql/generated/repo_list.api.dart
+              schema: lib/api/graphql/schema.graphql
+              queries_glob: lib/api/graphql/query/repo_list.graphql
