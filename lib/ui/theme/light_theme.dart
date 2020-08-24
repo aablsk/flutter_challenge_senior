@@ -15,7 +15,7 @@ ThemeData lightTheme = ThemeData(
     // the app on. For desktop platforms, the controls will be smaller and
     // closer together (more dense) than on mobile platforms.
     visualDensity: VisualDensity.adaptivePlatformDensity,
-    backgroundColor: Colors.grey[50],
+    backgroundColor: Colors.grey[100],
     cardTheme: CardTheme(
       clipBehavior: Clip.antiAlias,
       color: Colors.white,
@@ -24,4 +24,8 @@ ThemeData lightTheme = ThemeData(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.zero,
       ),
+    ),
+    bottomAppBarTheme: BottomAppBarTheme(
+      elevation: 2,
+      color: Colors.white,
     ));
