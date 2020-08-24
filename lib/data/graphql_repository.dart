@@ -8,6 +8,8 @@ class GraphQLRepository {
   Future<RepoList$Query> getRepoList({int first: 100}) async {
     // TODO: currently not pagination supported here
     final result = await _api.getReposForViewer(first: first);
+
+    // TODO: convert to union type?
     // check for exception
     if (result.hasException) {
       // check for graphQL errors

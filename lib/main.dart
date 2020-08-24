@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge_senior/data/graphql_repository.dart';
 import 'package:flutter_challenge_senior/service_locator.dart';
+import 'package:flutter_challenge_senior/ui/page/repo_list_page.dart';
 import 'package:flutter_challenge_senior/ui/theme/light_theme.dart';
+import 'package:flutter_challenge_senior/ui/widget/repo_list.dart';
 
 void main() {
   setupServices();
@@ -63,13 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                'You have pushed the button this many times:',
-              ),
-              Text(
-                '$_counter',
-                style: Theme.of(context).textTheme.headline4,
-              ),
+              RepoListPage(),
             ],
           ),
         ),
