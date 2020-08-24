@@ -17,7 +17,7 @@ query repo_list($first: Int = 100){
             id
             assignees(first: 1) {
               nodes {
-                avatarUrl(size: 4)
+                avatarUrl(size: 48)
                 id
                 login
               }

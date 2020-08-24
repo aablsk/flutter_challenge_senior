@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge_senior/state/repo_list_model.dart';
+import 'package:flutter_challenge_senior/ui/widget/repo_list_item.dart';
 import 'package:provider/provider.dart';
 
 class RepoList extends StatelessWidget {
@@ -12,7 +13,13 @@ class RepoList extends StatelessWidget {
         }
 
         if (model.hasData) {
-          return Text('Has data!');
+          return ListView.builder(
+            itemBuilder: (ctx, index) {
+              return RepoListItem(repo: model.repos.elementAt(index));
+            },
+            itemCount: model.repos.length,
+            shrinkWrap: true,
+          );
         } else if (model.isLoading) {
           return CircularProgressIndicator();
         } else {
