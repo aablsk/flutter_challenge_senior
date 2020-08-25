@@ -37,6 +37,7 @@ class GraphQLApi {
     final options = QueryOptions(
       documentNode: RepoListQuery().document,
       variables: variables,
+      fetchPolicy: FetchPolicy.cacheAndNetwork,
     );
 
     return this._client.query(options);

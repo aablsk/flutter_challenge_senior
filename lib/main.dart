@@ -58,26 +58,21 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return FutureBuilder(
       builder: (context, _) => Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              RepoListPage(),
-            ],
+        bottomNavigationBar: BottomNavigationBar(items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.view_list),
+            title: Text('Explore'),
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            title: Text('Settings'),
+          )
+        ]),
+        body: Center(
+          child: RepoListPage(),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => sl
-              .get<GraphQLRepository>()
-              .getRepoList()
-              .then((res) => print(res.toJson())),
-          tooltip: 'Increment',
-          child: Icon(Icons.add),
-        ), // This trailing comma makes auto-formatting nicer for build methods.
-      ),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
+
       future: sl.getAsync<GraphQLRepository>(),
     );
   }
