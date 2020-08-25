@@ -22,6 +22,31 @@ CardTheme _cardTheme = CardTheme(
   ),
 );
 
+final _inputDecorationTheme = InputDecorationTheme(
+  contentPadding: EdgeInsets.symmetric(
+    vertical: 20,
+  ),
+  border: OutlineInputBorder(
+    borderRadius: BorderRadius.circular(32),
+  ),
+  focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(32),
+      borderSide: BorderSide(
+        color: _colorScheme.primary,
+      )),
+  helperMaxLines: 1,
+  labelStyle: TextStyle(
+    color: _colorScheme.onSurface.withAlpha(120),
+  ),
+);
+
+final _buttonTheme = ButtonThemeData(
+  buttonColor: _colorScheme.primary,
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(32),
+  ),
+);
+
 ThemeData lightTheme = ThemeData(
   primaryColor: _colorScheme.primary,
   primaryColorDark: _colorScheme.primaryVariant,
@@ -34,4 +59,6 @@ ThemeData lightTheme = ThemeData(
     elevation: 2,
     color: _colorScheme.surface,
   ),
+  inputDecorationTheme: _inputDecorationTheme,
+  buttonTheme: _buttonTheme,
 );

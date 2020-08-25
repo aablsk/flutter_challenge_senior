@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_challenge_senior/constants.dart';
-import 'package:flutter_challenge_senior/github_api_token.secret.dart';
+import 'package:flutter_challenge_senior/api/graphql/auth.dart';
+import 'package:flutter_challenge_senior/service_locator.dart';
 import 'package:github_sign_in/github_sign_in.dart';
 
 class AuthModel extends ChangeNotifier {
@@ -12,27 +12,21 @@ class AuthModel extends ChangeNotifier {
   bool get hasError => _errorMessage != null;
   bool get isLoading => _isLoading;
   String get errorMessage => _errorMessage;
+  String get token => _token;
 
   // TODO: write firebase auth implementation from scratch to avoid exposing secrets in app
   // TODO: remove context from this (requires implementing this by oneself)
   Future<void> authenticate(
       {@required BuildContext context, String login}) async {
-    final GitHubSignIn gitHubSignIn = GitHubSignIn(
-      clientId: GITHUB_API_CLIENT_ID,
-      clientSecret: GITHUB_API_CLIENT_SECRET,
-      redirectUrl:
-          "https://flutter-challenge-senior.firebaseapp.com/__/auth/handler",
-      scope: GITHUB_GRAPHQL_API_SCOPE,
-      login: login,
-    );
-
     _preFlight();
 
-    final result = await gitHubSignIn.signIn(context);
+    final result =
+        await sl.get<GithubAuthClient>().signIn(context: context, login: login);
 
     switch (result.status) {
       case GitHubSignInResultStatus.ok:
         _token = result.token;
+        registerGraphQLApi(token: _token);
         break;
 
       case GitHubSignInResultStatus.cancelled:
@@ -44,13 +38,23 @@ class AuthModel extends ChangeNotifier {
     _postFlight();
   }
 
+  void logout() {
+    _token = null;
+    _errorMessage = null;
+    _isLoading = false;
+    unregisterOnLogout();
+    notifyListeners();
+  }
+
   _preFlight() {
     _token = null;
     _errorMessage = null;
     _isLoading = true;
+    notifyListeners();
   }
 
   _postFlight() {
     _isLoading = false;
+    notifyListeners();
   }
 }

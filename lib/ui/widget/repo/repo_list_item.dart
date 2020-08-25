@@ -13,6 +13,7 @@ class RepoListItem extends StatelessWidget {
     return Card(
       margin: EdgeInsets.fromLTRB(0, 0, 0, 8),
       child: InkWell(
+        splashColor: Theme.of(context).colorScheme.secondaryVariant,
         onTap: () => Navigator.pushNamed(context, '/issues', arguments: {
           'repoName': repo.name,
         }),

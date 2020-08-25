@@ -10,8 +10,9 @@ class IssueListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(vertical: 4),
+      margin: EdgeInsets.fromLTRB(0, 0, 0, 8),
       child: InkWell(
+        splashColor: Theme.of(context).colorScheme.secondaryVariant,
         onTap: () {},
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

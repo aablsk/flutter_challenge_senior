@@ -8,7 +8,7 @@ import 'package:graphql/client.dart';
 class GraphQLApi {
   GraphQLClient _client;
 
-  Future<GraphQLApi> init(String accessToken) async {
+  GraphQLApi init(String accessToken) {
     final httpLink = HttpLink(
       uri: GITHUB_GRAPHQL_API_URL,
     );

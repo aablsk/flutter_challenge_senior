@@ -8,11 +8,14 @@ class ListContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      color: Theme.of(context).colorScheme.primary,
-      displacement: 50,
-      onRefresh: onRefresh,
-      child: child,
+    return Container(
+      color: Theme.of(context).colorScheme.background,
+      child: RefreshIndicator(
+        color: Theme.of(context).colorScheme.primary,
+        displacement: 50,
+        onRefresh: onRefresh,
+        child: child,
+      ),
     );
   }
 }

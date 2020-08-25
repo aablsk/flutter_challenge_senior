@@ -20,7 +20,7 @@ class RepoInfo extends StatelessWidget {
             repo.name,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: theme.textTheme.headline4
+            style: theme.textTheme.headline5
                 .apply(color: Theme.of(context).colorScheme.primary),
           ),
           SizedBox(
