@@ -10,3 +10,6 @@ targets:
             - output: lib/api/graphql/generated/repo_list.api.dart
               schema: lib/api/graphql/schema.graphql
               queries_glob: lib/api/graphql/query/repo_list.graphql
+            - output: lib/api/graphql/generated/repo_issues.api.dart
+              schema: lib/api/graphql/schema.graphql
+              queries_glob: lib/api/graphql/query/repo_issues.graphql

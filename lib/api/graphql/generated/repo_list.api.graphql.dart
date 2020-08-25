@@ -1,11 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-import 'package:meta/meta.dart';
 import 'package:artemis/artemis.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:equatable/equatable.dart';
 import 'package:gql/ast.dart';
 part 'repo_list.api.graphql.g.dart';
+
+@JsonSerializable(explicitToJson: true)
+class RepoList$Query$User$RepositoryConnection$RepositoryEdge
+    with EquatableMixin {
+  RepoList$Query$User$RepositoryConnection$RepositoryEdge();
+
+  factory RepoList$Query$User$RepositoryConnection$RepositoryEdge.fromJson(
+          Map<String, dynamic> json) =>
+      _$RepoList$Query$User$RepositoryConnection$RepositoryEdgeFromJson(json);
+
+  String cursor;
+
+  @override
+  List<Object> get props => [cursor];
+  Map<String, dynamic> toJson() =>
+      _$RepoList$Query$User$RepositoryConnection$RepositoryEdgeToJson(this);
+}
 
 @JsonSerializable(explicitToJson: true)
 class RepoList$Query$User$RepositoryConnection$Repository$IssueConnection$Issue$UserConnection$User
@@ -21,10 +37,8 @@ class RepoList$Query$User$RepositoryConnection$Repository$IssueConnection$Issue$
 
   String id;
 
-  String login;
-
   @override
-  List<Object> get props => [avatarUrl, id, login];
+  List<Object> get props => [avatarUrl, id];
   Map<String, dynamic> toJson() =>
       _$RepoList$Query$User$RepositoryConnection$Repository$IssueConnection$Issue$UserConnection$UserToJson(
           this);
@@ -130,10 +144,12 @@ class RepoList$Query$User$RepositoryConnection with EquatableMixin {
 
   int totalCount;
 
+  List<RepoList$Query$User$RepositoryConnection$RepositoryEdge> edges;
+
   List<RepoList$Query$User$RepositoryConnection$Repository> nodes;
 
   @override
-  List<Object> get props => [totalCount, nodes];
+  List<Object> get props => [totalCount, edges, nodes];
   Map<String, dynamic> toJson() =>
       _$RepoList$Query$User$RepositoryConnectionToJson(this);
 }
@@ -232,6 +248,19 @@ class RepoListQuery extends GraphQLQuery<RepoList$Query, RepoListArguments> {
                           arguments: [],
                           directives: [],
                           selectionSet: null),
+                      FieldNode(
+                          name: NameNode(value: 'edges'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: SelectionSetNode(selections: [
+                            FieldNode(
+                                name: NameNode(value: 'cursor'),
+                                alias: null,
+                                arguments: [],
+                                directives: [],
+                                selectionSet: null)
+                          ])),
                       FieldNode(
                           name: NameNode(value: 'nodes'),
                           alias: null,
@@ -344,20 +373,13 @@ class RepoListQuery extends GraphQLQuery<RepoList$Query, RepoListArguments> {
                                                                           'size'),
                                                                   value: IntValueNode(
                                                                       value:
-                                                                          '4'))
+                                                                          '48'))
                                                             ],
                                                             directives: [],
                                                             selectionSet: null),
                                                         FieldNode(
                                                             name: NameNode(
                                                                 value: 'id'),
-                                                            alias: null,
-                                                            arguments: [],
-                                                            directives: [],
-                                                            selectionSet: null),
-                                                        FieldNode(
-                                                            name: NameNode(
-                                                                value: 'login'),
                                                             alias: null,
                                                             arguments: [],
                                                             directives: [],

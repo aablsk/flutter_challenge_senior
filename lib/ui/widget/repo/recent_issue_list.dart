@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge_senior/api/graphql/generated/repo_list.api.dart';
-import 'package:flutter_challenge_senior/ui/widget/issue_counter.dart';
-import 'package:flutter_challenge_senior/ui/widget/issue_item_small.dart';
+import 'package:flutter_challenge_senior/ui/widget/issue/issue_counter.dart';
+import 'package:flutter_challenge_senior/ui/widget/issue/issue_item_small.dart';
 
 class RecentIssueList extends StatelessWidget {
   RecentIssueList({Key key, @required this.repo}) : super(key: key);
@@ -17,7 +17,7 @@ class RecentIssueList extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+            padding: const EdgeInsets.fromLTRB(8, 0, 8, 2),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -29,7 +29,6 @@ class RecentIssueList extends StatelessWidget {
                 ]),
           ),
           Container(
-            color: Colors.grey[100],
             child: Column(
               children: [
                 ...issues.map(

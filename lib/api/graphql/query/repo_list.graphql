@@ -19,7 +19,6 @@ query repo_list($first: Int = 100){
               nodes {
                 avatarUrl(size: 48)
                 id
-                login
               }
             }
           }

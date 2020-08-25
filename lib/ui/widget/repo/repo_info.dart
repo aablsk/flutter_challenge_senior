@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge_senior/api/graphql/generated/repo_list.api.dart';
-import 'package:flutter_challenge_senior/ui/widget/issue_counter.dart';
 
 class RepoInfo extends StatelessWidget {
   RepoInfo({Key key, this.repo}) : super(key: key);
@@ -22,15 +21,15 @@ class RepoInfo extends StatelessWidget {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: theme.textTheme.headline4
-                .apply(color: Theme.of(context).primaryColorDark),
+                .apply(color: Theme.of(context).colorScheme.primary),
           ),
           SizedBox(
             height: 8,
           ),
           Text(
-            repo.description ?? '',
-            maxLines: 3,
-            overflow: TextOverflow.ellipsis,
+            repo.description != null ? repo.description : 'No description.',
+            maxLines: 2,
+            overflow: TextOverflow.fade,
             style: theme.textTheme.bodyText2,
           ),
         ],

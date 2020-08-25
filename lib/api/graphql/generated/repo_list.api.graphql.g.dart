@@ -6,13 +6,26 @@ part of 'repo_list.api.graphql.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+RepoList$Query$User$RepositoryConnection$RepositoryEdge
+    _$RepoList$Query$User$RepositoryConnection$RepositoryEdgeFromJson(
+        Map<String, dynamic> json) {
+  return RepoList$Query$User$RepositoryConnection$RepositoryEdge()
+    ..cursor = json['cursor'] as String;
+}
+
+Map<String, dynamic>
+    _$RepoList$Query$User$RepositoryConnection$RepositoryEdgeToJson(
+            RepoList$Query$User$RepositoryConnection$RepositoryEdge instance) =>
+        <String, dynamic>{
+          'cursor': instance.cursor,
+        };
+
 RepoList$Query$User$RepositoryConnection$Repository$IssueConnection$Issue$UserConnection$User
     _$RepoList$Query$User$RepositoryConnection$Repository$IssueConnection$Issue$UserConnection$UserFromJson(
         Map<String, dynamic> json) {
   return RepoList$Query$User$RepositoryConnection$Repository$IssueConnection$Issue$UserConnection$User()
     ..avatarUrl = json['avatarUrl']
-    ..id = json['id'] as String
-    ..login = json['login'] as String;
+    ..id = json['id'] as String;
 }
 
 Map<String, dynamic>
@@ -22,7 +35,6 @@ Map<String, dynamic>
         <String, dynamic>{
           'avatarUrl': instance.avatarUrl,
           'id': instance.id,
-          'login': instance.login,
         };
 
 RepoList$Query$User$RepositoryConnection$Repository$IssueConnection$Issue$UserConnection
@@ -119,6 +131,12 @@ RepoList$Query$User$RepositoryConnection
         Map<String, dynamic> json) {
   return RepoList$Query$User$RepositoryConnection()
     ..totalCount = json['totalCount'] as int
+    ..edges = (json['edges'] as List)
+        ?.map((e) => e == null
+            ? null
+            : RepoList$Query$User$RepositoryConnection$RepositoryEdge.fromJson(
+                e as Map<String, dynamic>))
+        ?.toList()
     ..nodes = (json['nodes'] as List)
         ?.map((e) => e == null
             ? null
@@ -131,6 +149,7 @@ Map<String, dynamic> _$RepoList$Query$User$RepositoryConnectionToJson(
         RepoList$Query$User$RepositoryConnection instance) =>
     <String, dynamic>{
       'totalCount': instance.totalCount,
+      'edges': instance.edges?.map((e) => e?.toJson())?.toList(),
       'nodes': instance.nodes?.map((e) => e?.toJson())?.toList(),
     };
 
