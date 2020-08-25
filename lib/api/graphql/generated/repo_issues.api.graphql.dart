@@ -64,6 +64,7 @@ class RepoIssues$Query$User$Repository$IssueConnection$Issue$Actor
 
   @override
   @JsonKey(name: '__typename')
+  // ignore: override_on_non_overriding_member
   String typeName;
 
   @override
@@ -89,6 +90,7 @@ class RepoIssues$Query$User$Repository$IssueConnection$Issue$IssueCommentConnect
 
   @override
   @JsonKey(name: '__typename')
+  // ignore: override_on_non_overriding_member
   String typeName;
 
   @override
@@ -143,64 +145,6 @@ class RepoIssues$Query$User$Repository$IssueConnection$Issue$IssueCommentConnect
 }
 
 @JsonSerializable(explicitToJson: true)
-class RepoIssues$Query$User$Repository$IssueConnection$Issue$LabelConnection$Label
-    with EquatableMixin {
-  RepoIssues$Query$User$Repository$IssueConnection$Issue$LabelConnection$Label();
-
-  factory RepoIssues$Query$User$Repository$IssueConnection$Issue$LabelConnection$Label.fromJson(
-          Map<String, dynamic> json) =>
-      _$RepoIssues$Query$User$Repository$IssueConnection$Issue$LabelConnection$LabelFromJson(
-          json);
-
-  String name;
-
-  @override
-  List<Object> get props => [name];
-  Map<String, dynamic> toJson() =>
-      _$RepoIssues$Query$User$Repository$IssueConnection$Issue$LabelConnection$LabelToJson(
-          this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class RepoIssues$Query$User$Repository$IssueConnection$Issue$LabelConnection
-    with EquatableMixin {
-  RepoIssues$Query$User$Repository$IssueConnection$Issue$LabelConnection();
-
-  factory RepoIssues$Query$User$Repository$IssueConnection$Issue$LabelConnection.fromJson(
-          Map<String, dynamic> json) =>
-      _$RepoIssues$Query$User$Repository$IssueConnection$Issue$LabelConnectionFromJson(
-          json);
-
-  List<RepoIssues$Query$User$Repository$IssueConnection$Issue$LabelConnection$Label>
-      nodes;
-
-  @override
-  List<Object> get props => [nodes];
-  Map<String, dynamic> toJson() =>
-      _$RepoIssues$Query$User$Repository$IssueConnection$Issue$LabelConnectionToJson(
-          this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class RepoIssues$Query$User$Repository$IssueConnection$Issue$Milestone
-    with EquatableMixin {
-  RepoIssues$Query$User$Repository$IssueConnection$Issue$Milestone();
-
-  factory RepoIssues$Query$User$Repository$IssueConnection$Issue$Milestone.fromJson(
-          Map<String, dynamic> json) =>
-      _$RepoIssues$Query$User$Repository$IssueConnection$Issue$MilestoneFromJson(
-          json);
-
-  String title;
-
-  @override
-  List<Object> get props => [title];
-  Map<String, dynamic> toJson() =>
-      _$RepoIssues$Query$User$Repository$IssueConnection$Issue$MilestoneToJson(
-          this);
-}
-
-@JsonSerializable(explicitToJson: true)
 class RepoIssues$Query$User$Repository$IssueConnection$Issue
     with EquatableMixin {
   RepoIssues$Query$User$Repository$IssueConnection$Issue();
@@ -223,27 +167,13 @@ class RepoIssues$Query$User$Repository$IssueConnection$Issue
   RepoIssues$Query$User$Repository$IssueConnection$Issue$IssueCommentConnection
       comments;
 
-  RepoIssues$Query$User$Repository$IssueConnection$Issue$LabelConnection labels;
-
-  RepoIssues$Query$User$Repository$IssueConnection$Issue$Milestone milestone;
-
   String title;
 
   DateTime updatedAt;
 
   @override
-  List<Object> get props => [
-        id,
-        bodyText,
-        assignees,
-        author,
-        closed,
-        comments,
-        labels,
-        milestone,
-        title,
-        updatedAt
-      ];
+  List<Object> get props =>
+      [id, bodyText, assignees, author, closed, comments, title, updatedAt];
   Map<String, dynamic> toJson() =>
       _$RepoIssues$Query$User$Repository$IssueConnection$IssueToJson(this);
 }
@@ -386,7 +316,19 @@ class RepoIssuesQuery
                           arguments: [
                             ArgumentNode(
                                 name: NameNode(value: 'first'),
-                                value: IntValueNode(value: '100'))
+                                value: IntValueNode(value: '100')),
+                            ArgumentNode(
+                                name: NameNode(value: 'orderBy'),
+                                value: ObjectValueNode(fields: [
+                                  ObjectFieldNode(
+                                      name: NameNode(value: 'field'),
+                                      value: EnumValueNode(
+                                          name: NameNode(value: 'UPDATED_AT'))),
+                                  ObjectFieldNode(
+                                      name: NameNode(value: 'direction'),
+                                      value: EnumValueNode(
+                                          name: NameNode(value: 'DESC')))
+                                ]))
                           ],
                           directives: [],
                           selectionSet: SelectionSetNode(selections: [
@@ -420,7 +362,7 @@ class RepoIssuesQuery
                                       arguments: [
                                         ArgumentNode(
                                             name: NameNode(value: 'first'),
-                                            value: IntValueNode(value: '10'))
+                                            value: IntValueNode(value: '1'))
                                       ],
                                       directives: [],
                                       selectionSet:
@@ -546,46 +488,6 @@ class RepoIssuesQuery
                                             ])),
                                         FieldNode(
                                             name: NameNode(value: 'totalCount'),
-                                            alias: null,
-                                            arguments: [],
-                                            directives: [],
-                                            selectionSet: null)
-                                      ])),
-                                  FieldNode(
-                                      name: NameNode(value: 'labels'),
-                                      alias: null,
-                                      arguments: [
-                                        ArgumentNode(
-                                            name: NameNode(value: 'first'),
-                                            value: IntValueNode(value: '10'))
-                                      ],
-                                      directives: [],
-                                      selectionSet:
-                                          SelectionSetNode(selections: [
-                                        FieldNode(
-                                            name: NameNode(value: 'nodes'),
-                                            alias: null,
-                                            arguments: [],
-                                            directives: [],
-                                            selectionSet:
-                                                SelectionSetNode(selections: [
-                                              FieldNode(
-                                                  name: NameNode(value: 'name'),
-                                                  alias: null,
-                                                  arguments: [],
-                                                  directives: [],
-                                                  selectionSet: null)
-                                            ]))
-                                      ])),
-                                  FieldNode(
-                                      name: NameNode(value: 'milestone'),
-                                      alias: null,
-                                      arguments: [],
-                                      directives: [],
-                                      selectionSet:
-                                          SelectionSetNode(selections: [
-                                        FieldNode(
-                                            name: NameNode(value: 'title'),
                                             alias: null,
                                             arguments: [],
                                             directives: [],

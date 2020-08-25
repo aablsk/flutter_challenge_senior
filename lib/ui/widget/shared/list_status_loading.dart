@@ -11,7 +11,7 @@ class ListStatusLoading extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 32),
       color: Theme.of(context).colorScheme.primary,
       child: Text(
-        'Getting fresh data just for you... 🧐',
+        'Getting fresh data for you... 🧐',
         style:
             theme.textTheme.bodyText1.apply(color: theme.colorScheme.onPrimary),
       ),

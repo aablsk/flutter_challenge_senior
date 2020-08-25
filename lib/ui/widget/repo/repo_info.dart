@@ -27,9 +27,9 @@ class RepoInfo extends StatelessWidget {
             height: 8,
           ),
           Text(
-            repo.description ?? '',
-            maxLines: 3,
-            overflow: TextOverflow.ellipsis,
+            repo.description != null ? repo.description : 'No description.',
+            maxLines: 2,
+            overflow: TextOverflow.fade,
             style: theme.textTheme.bodyText2,
           ),
         ],

@@ -40,6 +40,15 @@ class IssueItemSmall extends StatelessWidget {
               ),
               Row(
                 children: [
+                  assigneeAvatarUrl != null
+                      ? CircleAvatar(
+                          maxRadius: 10,
+                          backgroundImage: NetworkImage(assigneeAvatarUrl),
+                        )
+                      : Container(),
+                  SizedBox(
+                    width: 4,
+                  ),
                   Text(
                     issue.closed ? 'CLOSED' : 'OPEN',
                     style: Theme.of(context).textTheme.caption.apply(
@@ -49,15 +58,6 @@ class IssueItemSmall extends StatelessWidget {
                           fontWeightDelta: 1,
                         ),
                   ),
-                  SizedBox(
-                    width: 4,
-                  ),
-                  assigneeAvatarUrl != null
-                      ? CircleAvatar(
-                          maxRadius: 10,
-                          backgroundImage: NetworkImage(assigneeAvatarUrl),
-                        )
-                      : Container(),
                 ],
               ),
             ],

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_challenge_senior/state/repo_list_model.dart';
 
 class ListStatusError extends StatelessWidget {
   ListStatusError({Key key, @required this.errorMessage});
@@ -17,7 +16,7 @@ class ListStatusError extends StatelessWidget {
         children: [
           Text(
             'Something went wrong 😞',
-            style: theme.textTheme.subtitle1.apply(
+            style: theme.textTheme.bodyText1.apply(
               color: theme.colorScheme.onError,
             ),
           ),

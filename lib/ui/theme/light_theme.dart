@@ -13,7 +13,7 @@ ColorScheme _colorScheme = ColorScheme.light(
 
 CardTheme _cardTheme = CardTheme(
   clipBehavior: Clip.antiAlias,
-  color: Colors.white,
+  color: _colorScheme.surface,
   margin: EdgeInsets.symmetric(vertical: 2),
   elevation: 2,
   shape: RoundedRectangleBorder(
@@ -31,6 +31,6 @@ ThemeData lightTheme = ThemeData(
   colorScheme: _colorScheme,
   bottomAppBarTheme: BottomAppBarTheme(
     elevation: 2,
-    color: Colors.white,
+    color: _colorScheme.surface,
   ),
 );

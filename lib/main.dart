@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge_senior/data/graphql_repository.dart';
 import 'package:flutter_challenge_senior/service_locator.dart';
-import 'package:flutter_challenge_senior/ui/page/repo_list_page.dart';
 import 'package:flutter_challenge_senior/ui/theme/light_theme.dart';
+import 'package:flutter_challenge_senior/ui/widget/repo/explorer_navigator.dart';
 
 void main() {
   setupServices();
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
             )
           ]),
           body: Center(
-            child: RepoListPage(),
+            child: ExplorerNavigator(),
           ),
         ), // This trailing comma makes auto-formatting nicer for build methods.
 

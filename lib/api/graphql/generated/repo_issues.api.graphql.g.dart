@@ -123,56 +123,6 @@ Map<String, dynamic>
           'totalCount': instance.totalCount,
         };
 
-RepoIssues$Query$User$Repository$IssueConnection$Issue$LabelConnection$Label
-    _$RepoIssues$Query$User$Repository$IssueConnection$Issue$LabelConnection$LabelFromJson(
-        Map<String, dynamic> json) {
-  return RepoIssues$Query$User$Repository$IssueConnection$Issue$LabelConnection$Label()
-    ..name = json['name'] as String;
-}
-
-Map<String, dynamic>
-    _$RepoIssues$Query$User$Repository$IssueConnection$Issue$LabelConnection$LabelToJson(
-            RepoIssues$Query$User$Repository$IssueConnection$Issue$LabelConnection$Label
-                instance) =>
-        <String, dynamic>{
-          'name': instance.name,
-        };
-
-RepoIssues$Query$User$Repository$IssueConnection$Issue$LabelConnection
-    _$RepoIssues$Query$User$Repository$IssueConnection$Issue$LabelConnectionFromJson(
-        Map<String, dynamic> json) {
-  return RepoIssues$Query$User$Repository$IssueConnection$Issue$LabelConnection()
-    ..nodes = (json['nodes'] as List)
-        ?.map((e) => e == null
-            ? null
-            : RepoIssues$Query$User$Repository$IssueConnection$Issue$LabelConnection$Label
-                .fromJson(e as Map<String, dynamic>))
-        ?.toList();
-}
-
-Map<String, dynamic>
-    _$RepoIssues$Query$User$Repository$IssueConnection$Issue$LabelConnectionToJson(
-            RepoIssues$Query$User$Repository$IssueConnection$Issue$LabelConnection
-                instance) =>
-        <String, dynamic>{
-          'nodes': instance.nodes?.map((e) => e?.toJson())?.toList(),
-        };
-
-RepoIssues$Query$User$Repository$IssueConnection$Issue$Milestone
-    _$RepoIssues$Query$User$Repository$IssueConnection$Issue$MilestoneFromJson(
-        Map<String, dynamic> json) {
-  return RepoIssues$Query$User$Repository$IssueConnection$Issue$Milestone()
-    ..title = json['title'] as String;
-}
-
-Map<String, dynamic>
-    _$RepoIssues$Query$User$Repository$IssueConnection$Issue$MilestoneToJson(
-            RepoIssues$Query$User$Repository$IssueConnection$Issue$Milestone
-                instance) =>
-        <String, dynamic>{
-          'title': instance.title,
-        };
-
 RepoIssues$Query$User$Repository$IssueConnection$Issue
     _$RepoIssues$Query$User$Repository$IssueConnection$IssueFromJson(
         Map<String, dynamic> json) {
@@ -181,8 +131,8 @@ RepoIssues$Query$User$Repository$IssueConnection$Issue
     ..bodyText = json['bodyText'] as String
     ..assignees = json['assignees'] == null
         ? null
-        : RepoIssues$Query$User$Repository$IssueConnection$Issue$UserConnection.fromJson(
-            json['assignees'] as Map<String, dynamic>)
+        : RepoIssues$Query$User$Repository$IssueConnection$Issue$UserConnection
+            .fromJson(json['assignees'] as Map<String, dynamic>)
     ..author = json['author'] == null
         ? null
         : RepoIssues$Query$User$Repository$IssueConnection$Issue$Actor.fromJson(
@@ -190,19 +140,12 @@ RepoIssues$Query$User$Repository$IssueConnection$Issue
     ..closed = json['closed'] as bool
     ..comments = json['comments'] == null
         ? null
-        : RepoIssues$Query$User$Repository$IssueConnection$Issue$IssueCommentConnection.fromJson(
-            json['comments'] as Map<String, dynamic>)
-    ..labels = json['labels'] == null
-        ? null
-        : RepoIssues$Query$User$Repository$IssueConnection$Issue$LabelConnection
-            .fromJson(json['labels'] as Map<String, dynamic>)
-    ..milestone = json['milestone'] == null
-        ? null
-        : RepoIssues$Query$User$Repository$IssueConnection$Issue$Milestone.fromJson(
-            json['milestone'] as Map<String, dynamic>)
+        : RepoIssues$Query$User$Repository$IssueConnection$Issue$IssueCommentConnection
+            .fromJson(json['comments'] as Map<String, dynamic>)
     ..title = json['title'] as String
-    ..updatedAt =
-        json['updatedAt'] == null ? null : DateTime.parse(json['updatedAt'] as String);
+    ..updatedAt = json['updatedAt'] == null
+        ? null
+        : DateTime.parse(json['updatedAt'] as String);
 }
 
 Map<String, dynamic>
@@ -215,8 +158,6 @@ Map<String, dynamic>
           'author': instance.author?.toJson(),
           'closed': instance.closed,
           'comments': instance.comments?.toJson(),
-          'labels': instance.labels?.toJson(),
-          'milestone': instance.milestone?.toJson(),
           'title': instance.title,
           'updatedAt': instance.updatedAt?.toIso8601String(),
         };
