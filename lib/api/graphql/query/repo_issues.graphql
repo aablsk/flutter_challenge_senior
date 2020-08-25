@@ -1,0 +1,47 @@
+query repo_issues($repoName: String!){
+  viewer {
+    repository(name: $repoName) {
+      issues(first: 100) {
+        totalCount
+        nodes {
+          id
+          bodyText
+          assignees(first: 10) {
+            nodes {
+              avatarUrl(size: 48)
+              login
+            }
+          }
+          author {
+            login
+            avatarUrl(size: 48)
+          }
+          closed
+          comments(last: 2) {
+            nodes {
+              author {
+                login
+                avatarUrl(size: 48)
+              }
+              bodyText
+            }
+            totalCount
+          }
+          labels(first: 10) {
+            nodes {
+              name
+            }
+          }
+          milestone {
+            title
+          }
+          title
+          updatedAt
+        }
+        edges {
+          cursor
+        }
+      }
+    }
+  }
+}

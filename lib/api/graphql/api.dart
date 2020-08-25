@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_challenge_senior/api/graphql/generated/repo_issues.api.graphql.dart';
 import 'package:flutter_challenge_senior/api/graphql/generated/user.api.dart';
 import 'package:flutter_challenge_senior/api/graphql/generated/repo_list.api.dart';
 import 'package:flutter_challenge_senior/constants.dart';
@@ -47,6 +49,20 @@ class GraphQLApi {
     final options = QueryOptions(
       documentNode: GetLoginQuery().document,
     );
+    return this._client.query(options);
+  }
+
+  Future<QueryResult> getIssuesByRepoName({@required String repoName}) async {
+    final Map<String, dynamic> variables = {
+      'repoName': repoName,
+    };
+
+    final options = QueryOptions(
+      documentNode: RepoIssuesQuery().document,
+      variables: variables,
+      fetchPolicy: FetchPolicy.cacheAndNetwork,
+    );
+
     return this._client.query(options);
   }
 }
