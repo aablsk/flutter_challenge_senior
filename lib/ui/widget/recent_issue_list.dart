@@ -17,7 +17,7 @@ class RecentIssueList extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+            padding: const EdgeInsets.fromLTRB(8, 0, 8, 2),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -29,7 +29,6 @@ class RecentIssueList extends StatelessWidget {
                 ]),
           ),
           Container(
-            color: Colors.grey[100],
             child: Column(
               children: [
                 ...issues.map(

@@ -1,31 +1,36 @@
 import 'package:flutter/material.dart';
 
+ColorScheme _colorScheme = ColorScheme.light(
+  background: Colors.grey[100],
+  surface: Colors.white,
+  primary: Colors.indigo,
+  primaryVariant: Colors.indigo[800],
+  onPrimary: Colors.white,
+  secondary: Colors.deepOrange[500],
+  secondaryVariant: Colors.deepOrange[300],
+  onSecondary: Colors.black,
+);
+
+CardTheme _cardTheme = CardTheme(
+  clipBehavior: Clip.antiAlias,
+  color: Colors.white,
+  margin: EdgeInsets.symmetric(vertical: 2),
+  elevation: 2,
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.zero,
+  ),
+);
+
 ThemeData lightTheme = ThemeData(
-    // This is the theme of your application.
-    //
-    // Try running your application with "flutter run". You'll see the
-    // application has a blue toolbar. Then, without quitting the app, try
-    // changing the primarySwatch below to Colors.green and then invoke
-    // "hot reload" (press "r" in the console where you ran "flutter run",
-    // or simply save your changes to "hot reload" in a Flutter IDE).
-    // Notice that the counter didn't reset back to zero; the application
-    // is not restarted.
-    primarySwatch: Colors.blue,
-    // This makes the visual density adapt to the platform that you run
-    // the app on. For desktop platforms, the controls will be smaller and
-    // closer together (more dense) than on mobile platforms.
-    visualDensity: VisualDensity.adaptivePlatformDensity,
-    backgroundColor: Colors.grey[100],
-    cardTheme: CardTheme(
-      clipBehavior: Clip.antiAlias,
-      color: Colors.white,
-      margin: EdgeInsets.symmetric(vertical: 2),
-      elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.zero,
-      ),
-    ),
-    bottomAppBarTheme: BottomAppBarTheme(
-      elevation: 2,
-      color: Colors.white,
-    ));
+  primaryColor: _colorScheme.primary,
+  primaryColorDark: _colorScheme.primaryVariant,
+  accentColor: _colorScheme.secondary,
+  backgroundColor: _colorScheme.background,
+  visualDensity: VisualDensity.adaptivePlatformDensity,
+  cardTheme: _cardTheme,
+  colorScheme: _colorScheme,
+  bottomAppBarTheme: BottomAppBarTheme(
+    elevation: 2,
+    color: Colors.white,
+  ),
+);

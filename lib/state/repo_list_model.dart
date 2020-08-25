@@ -10,7 +10,7 @@ class RepoListModel extends ChangeNotifier {
   RepoList$Query$User$RepositoryConnection _result;
   bool _isLoading = false;
   bool _hasError = false;
-  String _errorMessage = null;
+  String _errorMessage;
 
   UnmodifiableListView<RepoList$Query$User$RepositoryConnection$Repository>
       get repos => UnmodifiableListView(_result?.nodes);
@@ -18,7 +18,7 @@ class RepoListModel extends ChangeNotifier {
   int get totalCount => _result.totalCount;
   bool get isLoading => _isLoading;
   bool get hasError => _hasError;
-  bool get hasData => _result != null && !hasError;
+  bool get hasData => _result != null;
   String get errorMessage => _errorMessage;
 
   RepoListModel() {
@@ -29,7 +29,6 @@ class RepoListModel extends ChangeNotifier {
     _isLoading = true;
     _hasError = false;
     _errorMessage = null;
-    _result = null;
     notifyListeners();
   }
 
@@ -42,7 +41,8 @@ class RepoListModel extends ChangeNotifier {
     beforeRequest();
 
     try {
-      this._result = (await _gqlRepo.getRepoList()).viewer.repositories;
+      final result = (await _gqlRepo.getRepoList()).viewer.repositories;
+      this._result = result;
     } catch (e) {
       _hasError = true;
       _errorMessage = e.toString();

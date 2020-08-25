@@ -8,7 +8,10 @@ class RepoListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => RepoListModel(),
-      child: RepoList(),
+      child: Container(
+        alignment: Alignment.topCenter,
+        child: RepoList(),
+      ),
     );
   }
 }

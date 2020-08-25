@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge_senior/state/repo_list_model.dart';
+import 'package:flutter_challenge_senior/ui/widget/list_status.dart';
 import 'package:flutter_challenge_senior/ui/widget/repo_list_item.dart';
 import 'package:provider/provider.dart';
 
@@ -7,6 +8,9 @@ class RepoList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
+      color: Theme.of(context).colorScheme.primary,
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      displacement: 50,
       onRefresh: () {
         final repoListModelProvider =
             Provider.of<RepoListModel>(context, listen: false);
@@ -14,29 +18,19 @@ class RepoList extends StatelessWidget {
       },
       child: Consumer<RepoListModel>(
         builder: (context, model, _) {
-          if (model.hasError) {
-            return Text('There was an error :(');
-          }
-
-          if (model.hasData) {
-            return Container(
-              color: Theme.of(context).backgroundColor,
-              child: ListView.builder(
-                physics: const AlwaysScrollableScrollPhysics(),
-                itemBuilder: (ctx, index) {
-                  return RepoListItem(repo: model.repos.elementAt(index));
-                },
-                itemCount: model.repos.length,
-                shrinkWrap: true,
-              ),
-            );
-          } else if (model.isLoading) {
-            return CircularProgressIndicator();
-          } else {
-            // if we don't have data, and aren't currently loading data, update data
+          if (!model.hasData && !model.isLoading && !model.hasError)
             model.updateData();
-            return CircularProgressIndicator();
-          }
+          return ListView.builder(
+            physics: const AlwaysScrollableScrollPhysics(),
+            itemBuilder: (ctx, index) {
+              if (index == 0) {
+                return ListStatusItem(model: model);
+              }
+              return RepoListItem(repo: model.repos.elementAt(index - 1));
+            },
+            itemCount: model.hasData ? 1 + model.repos.length : 1,
+            //shrinkWrap: true,
+          );
         },
       ),
     );
