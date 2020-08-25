@@ -61,7 +61,9 @@ How to define "our GitHub repositories"? Do we really want to view all issues at
 ### *"to quickly view all issues of one project after each other"*
 
 value of this user story is not clearly indicated, instead the actual task seems to be presented as the value.
+'projects' is something different than repositories in github.
 
+*ASSUMPTION* project refers to repositories not github projects (ACC take precedence).
 *ASSUMPTION* user story is secondary, ACC should be focused on.
 
 
