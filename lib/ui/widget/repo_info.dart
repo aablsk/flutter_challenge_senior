@@ -19,14 +19,13 @@ class RepoInfo extends StatelessWidget {
           ),
           Text(
             repo.name,
-            style: theme.textTheme.headline4,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: theme.textTheme.headline4
+                .apply(color: Theme.of(context).primaryColorDark),
           ),
           SizedBox(
-            height: 6,
-          ),
-          IssueCounter(repo: repo),
-          SizedBox(
-            height: 4,
+            height: 8,
           ),
           Text(
             repo.description ?? '',

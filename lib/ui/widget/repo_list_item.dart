@@ -21,7 +21,7 @@ class RepoListItem extends StatelessWidget {
             repo: repo,
           ),
           SizedBox(
-            height: 10,
+            height: 8,
           ),
           repo.issues.nodes.length > 0
               ? RecentIssueList(
