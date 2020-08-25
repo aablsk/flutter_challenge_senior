@@ -10,7 +10,6 @@ class ListContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       color: Theme.of(context).colorScheme.primary,
-      backgroundColor: Theme.of(context).colorScheme.surface,
       displacement: 50,
       onRefresh: onRefresh,
       child: child,

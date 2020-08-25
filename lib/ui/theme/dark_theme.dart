@@ -1,28 +1,27 @@
 import 'package:flutter/material.dart';
 
-ColorScheme _colorScheme = ColorScheme.light(
-  background: Colors.grey[100],
-  surface: Colors.white,
-  primary: Colors.indigo,
-  primaryVariant: Colors.indigo[800],
-  onPrimary: Colors.white,
-  secondary: Colors.deepOrange[500],
+ColorScheme _colorScheme = ColorScheme.dark(
+  primary: Colors.indigo[300],
+  primaryVariant: Colors.indigo[200],
+  secondary: Colors.deepOrange[400],
   secondaryVariant: Colors.deepOrange[300],
-  onSecondary: Colors.black,
-  brightness: Brightness.light,
+  background: Color.fromRGBO(24, 24, 24, 1),
+  surface: Color.fromRGBO(24, 24, 24, 1),
+  brightness: Brightness.dark,
 );
 
 CardTheme _cardTheme = CardTheme(
+  shadowColor: Colors.black,
+  color: Colors.white10,
   clipBehavior: Clip.antiAlias,
-  color: _colorScheme.surface,
   margin: EdgeInsets.symmetric(vertical: 2),
-  elevation: 2,
+  elevation: 1,
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.zero,
   ),
 );
 
-ThemeData lightTheme = ThemeData(
+ThemeData darkTheme = ThemeData(
   primaryColor: _colorScheme.primary,
   primaryColorDark: _colorScheme.primaryVariant,
   accentColor: _colorScheme.secondary,
@@ -32,6 +31,5 @@ ThemeData lightTheme = ThemeData(
   colorScheme: _colorScheme,
   bottomAppBarTheme: BottomAppBarTheme(
     elevation: 2,
-    color: _colorScheme.surface,
   ),
 );

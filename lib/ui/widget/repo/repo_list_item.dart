@@ -11,7 +11,7 @@ class RepoListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(vertical: 4),
+      margin: EdgeInsets.fromLTRB(0, 0, 0, 8),
       child: InkWell(
         onTap: () => Navigator.pushNamed(context, '/issues', arguments: {
           'repoName': repo.name,
@@ -24,7 +24,7 @@ class RepoListItem extends StatelessWidget {
               repo: repo,
             ),
             SizedBox(
-              height: 2,
+              height: 16,
             ),
             repo.issues.nodes.length > 0
                 ? RecentIssueList(

@@ -9,6 +9,7 @@ class RepoListPage extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => RepoListModel(),
       child: Container(
+        color: Theme.of(context).colorScheme.background,
         alignment: Alignment.topCenter,
         child: RepoList(),
       ),

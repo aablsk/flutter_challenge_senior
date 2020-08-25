@@ -19,8 +19,8 @@ class IssueItemSmall extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border(
             top: BorderSide(
-              width: 2,
-              color: Colors.grey[100],
+              width: 1,
+              color: Colors.grey[500],
               style: BorderStyle.solid,
             ),
           ),
