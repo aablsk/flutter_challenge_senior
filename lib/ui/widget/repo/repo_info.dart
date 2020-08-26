@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_challenge_senior/data/model/repo_list.dart';
+import 'package:flutter_challenge_senior/data/model/repository.dart';
 
 class RepoInfo extends StatelessWidget {
   RepoInfo({Key key, this.repo}) : super(key: key);

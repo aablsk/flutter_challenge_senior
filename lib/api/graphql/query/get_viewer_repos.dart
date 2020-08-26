@@ -1,4 +1,4 @@
-const String getRepoList = r'''query repo_list($first: Int = 100){
+const String getViewerRepos = r'''query get_viewer_repos($first: Int = 100){
   viewer {
     __typename
     repositories(first: $first, orderBy: {field: UPDATED_AT, direction: DESC}) {

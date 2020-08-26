@@ -1,5 +1,6 @@
-import 'package:flutter_challenge_senior/api/graphql/generated/repo_issues.api.dart';
 import 'package:flutter_challenge_senior/data/graphql_repository.dart';
+import 'package:flutter_challenge_senior/data/model/issue.dart';
+import 'package:flutter_challenge_senior/data/model/repo_issues_result.dart';
 import 'package:flutter_challenge_senior/service_locator.dart';
 import 'package:flutter_challenge_senior/state/list_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -8,19 +9,19 @@ class IssueListModel extends ListModel {
   // TODO: should probably decouple GraphQL classes from app logic
   final _gqlRepo = sl.get<GraphQLRepository>();
   final String repoName;
-  RepoIssues$Query$User$Repository$IssueConnection _result;
+  RepoIssuesResultData _result;
   bool _isLoading = false;
   String _errorMessage;
 
-  UnmodifiableListView<RepoIssues$Query$User$Repository$IssueConnection$Issue>
-      get issues => UnmodifiableListView(_result?.nodes);
+  UnmodifiableListView<Issue> get issues =>
+      UnmodifiableListView(_result?.issues);
 
   int get totalCount => _result.totalCount;
-  int get closedCount => _result.nodes.fold(
+  int get closedCount => issues.fold(
       0,
       (previousValue, element) =>
           element.closed ? previousValue + 1 : previousValue);
-  int get openCount => _result.nodes.fold(
+  int get openCount => issues.fold(
       0,
       (previousValue, element) =>
           !element.closed ? previousValue + 1 : previousValue);
@@ -33,31 +34,37 @@ class IssueListModel extends ListModel {
     updateData();
   }
 
-  void beforeRequest() {
+  void _processDataEvent(RepoIssuesResultData value) {
+    _result = value;
+    _isLoading = false;
+    notifyListeners();
+  }
+
+  void _processLoadingEvent() {
     _isLoading = true;
     _errorMessage = null;
     notifyListeners();
   }
 
-  void afterRequest() {
+  void _processErrorEvent(String errorMessage) {
     _isLoading = false;
+    _errorMessage = errorMessage;
     notifyListeners();
   }
 
   Future<void> updateData() async {
-    beforeRequest();
-
-    try {
-      final result = (await _gqlRepo.getIssuesByRepoName(repoName: repoName))
-          .viewer
-          .repository
-          .issues;
-      this._result = result;
-    } catch (e) {
-      _errorMessage = e.toString();
+    // handle runtime errors of stream
+    final cleanStream =
+        _gqlRepo.getRepoIssues(repoName: repoName).handleError((err) {
+      _errorMessage = err.toString();
+    });
+    // handle stream events
+    await for (var result in cleanStream) {
+      result.map(
+        data: (value) => _processDataEvent(value),
+        loading: (_) => _processLoadingEvent(),
+        error: (value) => _processErrorEvent(value.message),
+      );
     }
-
-    afterRequest();
-    return;
   }
 }

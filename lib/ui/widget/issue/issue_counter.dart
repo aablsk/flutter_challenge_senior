@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_challenge_senior/api/graphql/generated/repo_list.api.dart';
-import 'package:flutter_challenge_senior/data/model/repo_list.dart';
+import 'package:flutter_challenge_senior/data/model/repository.dart';
 
 class IssueCounter extends StatelessWidget {
   IssueCounter({Key key, @required this.repo}) : super(key: key);

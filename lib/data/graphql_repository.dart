@@ -1,66 +1,86 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_challenge_senior/api/graphql/api.dart';
-import 'package:flutter_challenge_senior/api/graphql/generated/repo_issues.api.graphql.dart';
-import 'package:flutter_challenge_senior/data/model/repo_list.dart';
+import 'package:flutter_challenge_senior/data/model/issue.dart';
+import 'package:flutter_challenge_senior/data/model/repo_issues_result.dart';
+import 'package:flutter_challenge_senior/data/model/repository.dart';
+import 'package:flutter_challenge_senior/data/model/viewer_repos_result.dart';
 import 'package:flutter_challenge_senior/service_locator.dart';
 
 class GraphQLRepository {
   GraphQLApi _api = sl.get<GraphQLApi>();
 
-  Stream<ListRepoResult> getRepoList({int first: 100}) async* {
-    yield ListRepoResult.loading();
-    // TODO: currently not pagination supported here
-    final result = await _api.getReposForViewer(first: first);
+  Stream<ViewerReposResult> getRepoList({int first: 100}) async* {
+    try {
+      yield ViewerReposResult.loading();
+      // TODO: currently not pagination supported here
+      final result = await _api.getReposForViewer(first: first);
 
-    // check for exception
-    if (result.hasException) {
-      // check for graphQL errors and yield
-      if (result?.exception?.graphqlErrors != null &&
-          result.exception.graphqlErrors.length > 0) {
-        yield ListRepoResult.error(
-          result.exception.graphqlErrors.first.message,
-        );
-        return;
+      if (result.hasException) {
+        if (result?.exception?.graphqlErrors != null &&
+            result.exception.graphqlErrors.length > 0) {
+          yield ViewerReposResult.error(
+            result.exception.graphqlErrors.first.message,
+          );
+          return;
+        }
+
+        if (result?.exception?.clientException != null) {
+          yield ViewerReposResult.error(
+            result.exception.clientException.message,
+          );
+          return;
+        }
       }
-      // check for client errors and yield
-      if (result?.exception?.clientException != null) {
-        yield ListRepoResult.error(
-          result.exception.clientException.message,
-        );
-        return;
+
+      if (result.data != null) {
+        final repositoriesMap = result.data['viewer']['repositories'];
+        final repositories = (repositoriesMap['nodes'] as List<dynamic>)
+            .map(
+              (repo) => Repository.fromGqlResult(repo),
+            )
+            .toList();
+        yield ViewerReposResult.data(
+            repositories, repositoriesMap['totalCount']);
       }
-    }
-    if (result.data != null) {
-      final repositoriesMap = result.data['viewer']['repositories'];
-      final repositories = (repositoriesMap['nodes'] as List<dynamic>)
-          .map(
-            (repo) => Repository.fromGqlResult(repo),
-          )
-          .toList();
-      yield ListRepoResult.data(repositories, repositoriesMap['totalCount']);
+    } catch (e) {
+      yield ViewerReposResult.error(e.toString());
+      return;
     }
   }
 
-  Future<RepoIssues$Query> getIssuesByRepoName(
-      {@required String repoName}) async {
-    // TODO: currently not pagination supported here
-    final result = await _api.getIssuesByRepoName(repoName: repoName);
+  Stream<RepoIssuesResult> getRepoIssues({@required String repoName}) async* {
+    try {
+      yield RepoIssuesResult.loading();
+      // TODO: currently not pagination supported here
+      final result = await _api.getIssuesByRepoName(repoName: repoName);
 
-    // TODO: convert to union type?
-    // check for exception
-    if (result.hasException) {
-      // check for graphQL errors
-      if (result?.exception?.graphqlErrors != null &&
-          result.exception.graphqlErrors.length > 0) {
-        print(result.exception.graphqlErrors);
+      if (result.hasException) {
+        if (result?.exception?.graphqlErrors != null &&
+            result.exception.graphqlErrors.length > 0) {
+          yield RepoIssuesResult.error(
+            result.exception.graphqlErrors.first.message,
+          );
+          return;
+        }
+
+        if (result?.exception?.clientException != null) {
+          yield RepoIssuesResult.error(
+            result.exception.clientException.message,
+          );
+          return;
+        }
       }
-      // check for client errors and throw if error
-      if (result?.exception?.clientException != null) {
-        print(result.exception.clientException);
-        throw result.exception.clientException;
+
+      if (result.data != null) {
+        final issuesMap = result.data['viewer']['repository']['issues'];
+        final issues = (issuesMap['nodes'] as List<dynamic>)
+            .map((issue) => Issue.fromGqlResult(issue))
+            .toList();
+        yield RepoIssuesResult.data(issues, issuesMap['totalCount']);
       }
+    } catch (e) {
+      yield RepoIssuesResult.error(e.toString());
+      return;
     }
-    // initialize class from JSON
-    return RepoIssues$Query.fromJson(result.data);
   }
 }

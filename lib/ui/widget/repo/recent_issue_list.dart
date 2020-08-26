@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_challenge_senior/api/graphql/generated/repo_list.api.dart';
-import 'package:flutter_challenge_senior/data/model/repo_list.dart';
+import 'package:flutter_challenge_senior/data/model/repository.dart';
 import 'package:flutter_challenge_senior/ui/widget/issue/issue_counter.dart';
 import 'package:flutter_challenge_senior/ui/widget/issue/issue_item_small.dart';
 
