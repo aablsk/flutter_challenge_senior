@@ -17,15 +17,6 @@ class GraphQLApi {
     final authLink = AuthLink(getToken: () => "bearer $accessToken");
     final link = authLink.concat(httpLink);
 
-    String _typenameDataIdFromObject(Object object) {
-      if (object is Map<String, Object> &&
-          object.containsKey('__typename') &&
-          object.containsKey('id')) {
-        return "${object['__typename']}/${object['id']}";
-      }
-      return null;
-    }
-
     this._client = GraphQLClient(
       link: link,
       cache: OptimisticCache(dataIdFromObject: _typenameDataIdFromObject),
@@ -33,10 +24,18 @@ class GraphQLApi {
     return this;
   }
 
-  Future<QueryResult> getReposForViewer({int first, int after}) async {
+  String _typenameDataIdFromObject(Object object) {
+    if (object is Map<String, Object> &&
+        object.containsKey('__typename') &&
+        object.containsKey('id')) {
+      return "${object['__typename']}/${object['id']}";
+    }
+    return null;
+  }
+
+  Future<QueryResult> getReposForViewer({int first}) async {
     final Map<String, dynamic> variables = {};
     if (first != null) variables['first'] = first;
-    if (after != null) variables['after'] = after;
 
     final options = QueryOptions(
       documentNode: gql(getViewerRepos),

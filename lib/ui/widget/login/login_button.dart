@@ -3,9 +3,9 @@ import 'package:flutter_challenge_senior/state/auth_model.dart';
 import 'package:provider/provider.dart';
 
 class LoginButton extends StatelessWidget {
-  LoginButton({Key key, this.login}) : super(key: key);
+  LoginButton({Key key, @required this.controller}) : super(key: key);
 
-  final String login;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class LoginButton extends StatelessWidget {
           onPressed: () =>
               Provider.of<AuthModel>(context, listen: false).authenticate(
             context: context,
-            login: login,
+            login: controller.value.text,
           ),
         );
       },

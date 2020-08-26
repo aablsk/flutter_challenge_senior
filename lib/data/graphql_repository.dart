@@ -16,7 +16,7 @@ class GraphQLRepository {
   Stream<ViewerReposResult> getRepoList({int first: 100}) async* {
     try {
       yield ViewerReposResult.loading();
-      // TODO: currently not pagination supported here
+      // TODO: currently no pagination supported here
       final result = await _api.getReposForViewer(first: first);
 
       if (result.hasException) {
@@ -55,7 +55,7 @@ class GraphQLRepository {
   Stream<RepoIssuesResult> getRepoIssues({@required String repoName}) async* {
     try {
       yield RepoIssuesResult.loading();
-      // TODO: currently not pagination supported here
+      // TODO: currently no pagination supported here
       final result = await _api.getIssuesByRepoName(repoName: repoName);
 
       if (result.hasException) {

@@ -12,7 +12,9 @@ class LoginForm extends HookWidget {
       children: [
         LoginInput(controller: textEditingController),
         SizedBox(height: 16),
-        LoginButton(login: textEditingController.value.text),
+        LoginButton(
+            key: Key('login_sign_in_button'),
+            controller: textEditingController),
       ],
     );
   }

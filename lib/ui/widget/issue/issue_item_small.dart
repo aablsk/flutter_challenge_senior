@@ -13,7 +13,6 @@ class IssueItemSmall extends StatelessWidget {
         issue?.assignees?.length != null && issue.assignees.length > 0
             ? issue.assignees.first.avatarUrl
             : null;
-    final colorScheme = Theme.of(context).colorScheme;
     if (issue != null) {
       return Container(
         decoration: BoxDecoration(
