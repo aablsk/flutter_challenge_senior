@@ -41,7 +41,16 @@ class App extends StatelessWidget {
             ),
           );
         }
-        return LoginPage();
+        return AnnotatedRegion<SystemUiOverlayStyle>(
+          value: SystemUiOverlayStyle(
+            statusBarColor: Theme.of(context).colorScheme.background,
+            statusBarIconBrightness:
+                Theme.of(context).colorScheme.brightness == Brightness.light
+                    ? Brightness.dark
+                    : Brightness.light,
+          ),
+          child: LoginPage(),
+        );
       },
     );
   }
