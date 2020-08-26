@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_challenge_senior/data/model/issue.dart';
 import 'package:flutter_challenge_senior/ui/widget/issue/assignee_label.dart';
 import 'package:flutter_challenge_senior/ui/widget/issue/author_label.dart';
+import 'package:flutter_challenge_senior/ui/widget/issue/issue_body.dart';
+import 'package:flutter_challenge_senior/ui/widget/issue/issue_footer.dart';
+import 'package:flutter_challenge_senior/ui/widget/issue/issue_header.dart';
 import 'package:flutter_challenge_senior/ui/widget/issue/updated_at_label.dart';
+import 'package:flutter_challenge_senior/ui/widget/shared/issue_status_text.dart';
 
 class IssueInfo extends StatelessWidget {
   IssueInfo({Key key, this.issue}) : super(key: key);
@@ -19,51 +23,15 @@ class IssueInfo extends StatelessWidget {
           SizedBox(
             height: 8,
           ),
-          Text(
-            issue.title,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: theme.textTheme.headline5
-                .apply(color: Theme.of(context).colorScheme.primary),
-          ),
-          SizedBox(
-            height: 8,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              AssigneeLabel(
-                assignees: issue.assignees,
-              ),
-              Text(
-                issue.closed ? 'CLOSED' : 'OPEN',
-                style: Theme.of(context).textTheme.caption.apply(
-                      color: issue.closed
-                          ? theme.colorScheme.primary
-                          : theme.colorScheme.secondary,
-                      fontWeightDelta: 1,
-                    ),
-              ),
-            ],
-          ),
+          IssueHeader(issue: issue),
           SizedBox(
             height: 16,
           ),
-          Text(
-            issue.bodyText != '' ? issue.bodyText : 'No description.',
-            maxLines: 4,
-            overflow: TextOverflow.fade,
-            style: theme.textTheme.bodyText2,
-          ),
+          IssueBody(issue: issue),
           SizedBox(
             height: 16,
           ),
-          Center(
-            child: UpdatedAtLabel(
-              updatedAt: issue.updatedAt,
-            ),
-          ),
-          AuthorLabel(author: issue.author),
+          IssueFooter(issue: issue),
         ],
       ),
     );

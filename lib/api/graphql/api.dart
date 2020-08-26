@@ -4,6 +4,9 @@ import 'package:flutter_challenge_senior/api/graphql/query/get_viewer_repos.dart
 import 'package:flutter_challenge_senior/constants.dart';
 import 'package:graphql/client.dart';
 
+/**
+ * This class is used for querying with GraphQL API
+ */
 class GraphQLApi {
   GraphQLClient _client;
 

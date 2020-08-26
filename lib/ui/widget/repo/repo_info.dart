@@ -21,14 +21,14 @@ class RepoInfo extends StatelessWidget {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: theme.textTheme.headline5
-                .apply(color: Theme.of(context).colorScheme.primary),
+                .apply(color: Theme.of(context).colorScheme.primaryVariant),
           ),
           SizedBox(
             height: 8,
           ),
           Text(
             repo.description != null ? repo.description : 'No description.',
-            maxLines: 2,
+            maxLines: 4,
             overflow: TextOverflow.fade,
             style: theme.textTheme.bodyText2,
           ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_challenge_senior/state/repo_list_model.dart';
+import 'package:flutter_challenge_senior/state/repo_list_view_model.dart';
 import 'package:flutter_challenge_senior/ui/widget/shared/list_container.dart';
 import 'package:flutter_challenge_senior/ui/widget/shared/list_status.dart';
 import 'package:flutter_challenge_senior/ui/widget/repo/repo_list_item.dart';
@@ -10,8 +10,8 @@ class RepoList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListContainer(
       onRefresh: () =>
-          Provider.of<RepoListModel>(context, listen: false).updateData(),
-      child: Consumer<RepoListModel>(
+          Provider.of<RepoListViewModel>(context, listen: false).updateData(),
+      child: Consumer<RepoListViewModel>(
         builder: (context, model, _) {
           return ListView.builder(
             physics: const AlwaysScrollableScrollPhysics(),
@@ -22,7 +22,6 @@ class RepoList extends StatelessWidget {
               return RepoListItem(repo: model.items.elementAt(index - 1));
             },
             itemCount: model.hasData ? 1 + model.items.length : 1,
-            //shrinkWrap: true,
           );
         },
       ),

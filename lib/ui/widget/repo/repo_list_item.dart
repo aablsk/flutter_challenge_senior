@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge_senior/data/model/repository.dart';
-import 'package:flutter_challenge_senior/ui/widget/repo/recent_issue_list.dart';
+import 'package:flutter_challenge_senior/ui/widget/repo/recent_issues.dart';
 import 'package:flutter_challenge_senior/ui/widget/repo/repo_info.dart';
 
 class RepoListItem extends StatelessWidget {
@@ -25,13 +25,11 @@ class RepoListItem extends StatelessWidget {
               repo: repo,
             ),
             SizedBox(
-              height: 16,
+              height: 8,
             ),
-            repo.issues.length > 0
-                ? RecentIssueList(
-                    repo: repo,
-                  )
-                : Container(),
+            RecentIssues(
+              repo: repo,
+            ),
           ],
         ),
       ),

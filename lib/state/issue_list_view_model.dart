@@ -2,11 +2,10 @@ import 'package:flutter_challenge_senior/data/graphql_repository.dart';
 import 'package:flutter_challenge_senior/data/model/issue.dart';
 import 'package:flutter_challenge_senior/data/model/repo_issues_result.dart';
 import 'package:flutter_challenge_senior/service_locator.dart';
-import 'package:flutter_challenge_senior/state/list_model.dart';
+import 'package:flutter_challenge_senior/state/list_view_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-class IssueListModel extends ListModel {
-  // TODO: should probably decouple GraphQL classes from app logic
+class IssueListViewModel extends ListViewModel {
   final _gqlRepo = sl.get<GraphQLRepository>();
   final String repoName;
   RepoIssuesResultData _result;
@@ -30,7 +29,7 @@ class IssueListModel extends ListModel {
   bool get hasData => _result != null && issues.length > 0;
   String get errorMessage => _errorMessage;
 
-  IssueListModel({this.repoName}) {
+  IssueListViewModel({this.repoName}) {
     updateData();
   }
 
@@ -53,7 +52,7 @@ class IssueListModel extends ListModel {
   }
 
   Future<void> updateData() async {
-    // handle runtime errors of stream
+    // handle possible runtime errors of stream
     final cleanStream =
         _gqlRepo.getRepoIssues(repoName: repoName).handleError((err) {
       _errorMessage = err.toString();

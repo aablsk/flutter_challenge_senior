@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_challenge_senior/state/list_model.dart';
+import 'package:flutter_challenge_senior/state/list_view_model.dart';
 import 'package:flutter_challenge_senior/ui/widget/shared/list_status_error.dart';
 import 'package:flutter_challenge_senior/ui/widget/shared/list_status_loading.dart';
 
 class ListStatusItem extends StatelessWidget {
   ListStatusItem({Key key, @required this.model});
-  final ListModel model;
+  final ListViewModel model;
 
   @override
   Widget build(BuildContext context) {

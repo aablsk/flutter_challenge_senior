@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge_senior/data/model/issue.dart';
+import 'package:flutter_challenge_senior/ui/widget/shared/issue_status_text.dart';
 
 class IssueItemSmall extends StatelessWidget {
   IssueItemSmall({Key key, this.issue}) : super(key: key);
@@ -41,22 +42,14 @@ class IssueItemSmall extends StatelessWidget {
                 children: [
                   assigneeAvatarUrl != null
                       ? CircleAvatar(
-                          maxRadius: 10,
+                          maxRadius: 8,
                           backgroundImage: NetworkImage(assigneeAvatarUrl),
                         )
                       : Container(),
                   SizedBox(
                     width: 4,
                   ),
-                  Text(
-                    issue.closed ? 'CLOSED' : 'OPEN',
-                    style: Theme.of(context).textTheme.caption.apply(
-                          color: issue.closed
-                              ? colorScheme.primary
-                              : colorScheme.secondary,
-                          fontWeightDelta: 1,
-                        ),
-                  ),
+                  IssueStatusText(closed: issue.closed),
                 ],
               ),
             ],

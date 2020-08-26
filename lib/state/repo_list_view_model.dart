@@ -2,11 +2,10 @@ import 'package:flutter_challenge_senior/data/graphql_repository.dart';
 import 'package:flutter_challenge_senior/data/model/repository.dart';
 import 'package:flutter_challenge_senior/data/model/viewer_repos_result.dart';
 import 'package:flutter_challenge_senior/service_locator.dart';
-import 'package:flutter_challenge_senior/state/list_model.dart';
+import 'package:flutter_challenge_senior/state/list_view_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-class RepoListModel extends ListModel {
-  // TODO: should probably decouple GraphQL classes from app logic
+class RepoListViewModel extends ListViewModel {
   final _gqlRepo = sl.get<GraphQLRepository>();
   ViewerReposResultData _result;
   bool _isLoading = false;
@@ -21,7 +20,7 @@ class RepoListModel extends ListModel {
   bool get hasData => _result != null && items.length > 0;
   String get errorMessage => _errorMessage;
 
-  RepoListModel() {
+  RepoListViewModel() {
     updateData();
   }
 
@@ -44,7 +43,7 @@ class RepoListModel extends ListModel {
   }
 
   Future<void> updateData() async {
-    // handle runtime errors of stream
+    // handle possible runtime errors of stream
     final cleanStream = _gqlRepo.getRepoList().handleError((err) {
       _errorMessage = err.toString();
     });

@@ -14,8 +14,6 @@ class AuthModel extends ChangeNotifier {
   String get errorMessage => _errorMessage;
   String get token => _token;
 
-  // TODO: write firebase auth implementation from scratch to avoid exposing secrets in app
-  // TODO: remove context from this (requires implementing this by oneself)
   Future<void> authenticate(
       {@required BuildContext context, String login}) async {
     _token = "c7ec20000b83e3c7fb099215f0e1340d392da540";
@@ -23,7 +21,7 @@ class AuthModel extends ChangeNotifier {
     notifyListeners();
     return;
     _preFlight();
-
+    // TODO: move this to auth repository and create immutable data classes
     final result =
         await sl.get<GithubAuthClient>().signIn(context: context, login: login);
 
@@ -48,6 +46,14 @@ class AuthModel extends ChangeNotifier {
     _isLoading = false;
     unregisterOnLogout();
     notifyListeners();
+  }
+
+  bool isUsernameValid(String username) {
+    return username.length == 0 ||
+        RegExp(
+          r"^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$",
+          caseSensitive: false,
+        ).hasMatch(username);
   }
 
   _preFlight() {

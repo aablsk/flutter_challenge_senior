@@ -3,6 +3,13 @@ import 'package:flutter_challenge_senior/constants.dart';
 import 'package:flutter_challenge_senior/github_api_token.secret.dart';
 import 'package:github_sign_in/github_sign_in.dart';
 
+/**
+ * This class is used to authenticate with Github OAuth flow
+ * TODO: Implementation is not production grade due to several reasons:
+ * - exposes clientId and clientSecret in frontend
+ * - needed to be enhanced to support login prefill
+ * - invalid action window is shown shortly after successful authentication
+ */
 class GithubAuthClient {
   Future<GitHubSignInResult> signIn(
       {@required BuildContext context, String login}) async {

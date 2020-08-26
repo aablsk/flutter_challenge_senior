@@ -5,7 +5,7 @@ import 'package:flutter_challenge_senior/ui/widget/shared/user_login_avatar.dart
 class AssigneeLabel extends StatelessWidget {
   AssigneeLabel({Key key, @required this.assignees}) : super(key: key);
 
-  // using assignees so we can later show more than just one assignee
+  // Note: using assignees so we can later show more than just one assignee
   final List<User> assignees;
 
   @override
@@ -14,7 +14,7 @@ class AssigneeLabel extends StatelessWidget {
     if (assignees.length == 0) {
       return Text(
         'Unassigned',
-        style: textTheme.overline,
+        style: textTheme.caption,
       );
     }
     // TODO: multiple assignees not supported
@@ -22,11 +22,12 @@ class AssigneeLabel extends StatelessWidget {
       children: [
         Text(
           'Assignee - ',
-          style: textTheme.overline,
+          style: textTheme.caption,
         ),
         UserLoginAvatar(
           login: assignees.first.login,
           avatarUrl: assignees.first.avatarUrl,
+          style: textTheme.caption,
         ),
       ],
     );

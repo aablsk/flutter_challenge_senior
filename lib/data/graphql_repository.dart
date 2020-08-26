@@ -6,6 +6,10 @@ import 'package:flutter_challenge_senior/data/model/repository.dart';
 import 'package:flutter_challenge_senior/data/model/viewer_repos_result.dart';
 import 'package:flutter_challenge_senior/service_locator.dart';
 
+/**
+ * This class is used to consume GraphQLApi and transform results into streams
+ * of immutable data classes, it may only be used by business logic models
+ */
 class GraphQLRepository {
   GraphQLApi _api = sl.get<GraphQLApi>();
 
