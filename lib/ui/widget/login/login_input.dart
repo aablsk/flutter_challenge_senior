@@ -10,6 +10,7 @@ class LoginInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      key: Key('login_input_username'),
       decoration: InputDecoration(
         labelText: 'username',
         prefixIcon: Padding(
