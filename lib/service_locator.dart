@@ -15,6 +15,14 @@ void registerGraphQLApi({String token}) {
 }
 
 void unregisterOnLogout() {
-  sl.unregister<GraphQLApi>();
-  sl.unregister<GraphQLRepository>();
+  try {
+    sl.unregister<GraphQLApi>();
+  } catch (err) {
+    print('Error happened while unregistering GraphQLApi on logout');
+  }
+  try {
+    sl.unregister<GraphQLRepository>();
+  } catch (err) {
+    print('Error happened while unregistering GraphQLApi on logout');
+  }
 }

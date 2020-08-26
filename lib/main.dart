@@ -12,16 +12,15 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<AuthModel>(
       create: (context) => AuthModel(),
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Issue Explorer',
         theme: lightTheme,
         darkTheme: darkTheme,
-        home: App(), // This trailing comma makes auto-form
+        home: App(),
       ),
     );
   }

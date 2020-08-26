@@ -16,7 +16,6 @@ class IssueList extends StatelessWidget {
           return ListView.builder(
             physics: const AlwaysScrollableScrollPhysics(),
             itemBuilder: (ctx, index) {
-              // TODO: add header to summarize Repo info
               if (index == 0) {
                 return ListStatusItem(model: model);
               }
