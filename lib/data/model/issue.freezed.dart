@@ -63,6 +63,8 @@ abstract class $IssueCopyWith<$Res> {
       User author,
       String bodyText,
       DateTime updatedAt});
+
+  $UserCopyWith<$Res> get author;
 }
 
 class _$IssueCopyWithImpl<$Res> implements $IssueCopyWith<$Res> {
@@ -96,6 +98,16 @@ class _$IssueCopyWithImpl<$Res> implements $IssueCopyWith<$Res> {
           updatedAt == freezed ? _value.updatedAt : updatedAt as DateTime,
     ));
   }
+
+  @override
+  $UserCopyWith<$Res> get author {
+    if (_value.author == null) {
+      return null;
+    }
+    return $UserCopyWith<$Res>(_value.author, (value) {
+      return _then(_value.copyWith(author: value));
+    });
+  }
 }
 
 abstract class _$IssueCopyWith<$Res> implements $IssueCopyWith<$Res> {
@@ -111,6 +123,9 @@ abstract class _$IssueCopyWith<$Res> implements $IssueCopyWith<$Res> {
       User author,
       String bodyText,
       DateTime updatedAt});
+
+  @override
+  $UserCopyWith<$Res> get author;
 }
 
 class __$IssueCopyWithImpl<$Res> extends _$IssueCopyWithImpl<$Res>
