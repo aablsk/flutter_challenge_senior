@@ -19,9 +19,9 @@ class RepoList extends StatelessWidget {
               if (index == 0) {
                 return ListStatusItem(model: model);
               }
-              return RepoListItem(repo: model.repos.elementAt(index - 1));
+              return RepoListItem(repo: model.items.elementAt(index - 1));
             },
-            itemCount: model.hasData ? 1 + model.repos.length : 1,
+            itemCount: model.hasData ? 1 + model.items.length : 1,
             //shrinkWrap: true,
           );
         },

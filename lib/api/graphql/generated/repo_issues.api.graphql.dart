@@ -64,7 +64,6 @@ class RepoIssues$Query$User$Repository$IssueConnection$Issue$Actor
 
   @override
   @JsonKey(name: '__typename')
-  // ignore: override_on_non_overriding_member
   String typeName;
 
   @override
@@ -90,7 +89,6 @@ class RepoIssues$Query$User$Repository$IssueConnection$Issue$IssueCommentConnect
 
   @override
   @JsonKey(name: '__typename')
-  // ignore: override_on_non_overriding_member
   String typeName;
 
   @override

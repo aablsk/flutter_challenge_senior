@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_challenge_senior/api/graphql/generated/repo_issues.api.graphql.dart';
 import 'package:flutter_challenge_senior/api/graphql/generated/user.api.dart';
 import 'package:flutter_challenge_senior/api/graphql/generated/repo_list.api.dart';
+import 'package:flutter_challenge_senior/api/graphql/query/repo_list.dart';
 import 'package:flutter_challenge_senior/constants.dart';
 import 'package:graphql/client.dart';
 
@@ -37,7 +38,7 @@ class GraphQLApi {
     if (after != null) variables['after'] = after;
 
     final options = QueryOptions(
-      documentNode: RepoListQuery().document,
+      documentNode: gql(getRepoList),
       variables: variables,
       fetchPolicy: FetchPolicy.cacheAndNetwork,
     );

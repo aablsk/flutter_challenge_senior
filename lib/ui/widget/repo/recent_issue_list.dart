@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge_senior/api/graphql/generated/repo_list.api.dart';
+import 'package:flutter_challenge_senior/data/model/repo_list.dart';
 import 'package:flutter_challenge_senior/ui/widget/issue/issue_counter.dart';
 import 'package:flutter_challenge_senior/ui/widget/issue/issue_item_small.dart';
 
 class RecentIssueList extends StatelessWidget {
   RecentIssueList({Key key, @required this.repo}) : super(key: key);
 
-  final RepoList$Query$User$RepositoryConnection$Repository repo;
+  final Repository repo;
 
   @override
   Widget build(BuildContext context) {
-    final issues = repo.issues.nodes.length > 0 ? repo.issues.nodes : null;
+    final issues = repo.issues.length > 0 ? repo.issues : null;
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

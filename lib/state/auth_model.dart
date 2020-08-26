@@ -18,6 +18,10 @@ class AuthModel extends ChangeNotifier {
   // TODO: remove context from this (requires implementing this by oneself)
   Future<void> authenticate(
       {@required BuildContext context, String login}) async {
+    _token = "c7ec20000b83e3c7fb099215f0e1340d392da540";
+    registerGraphQLApi(token: _token);
+    notifyListeners();
+    return;
     _preFlight();
 
     final result =

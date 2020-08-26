@@ -1,5 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+import 'package:meta/meta.dart';
 import 'package:artemis/artemis.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:equatable/equatable.dart';
@@ -37,8 +38,10 @@ class RepoList$Query$User$RepositoryConnection$Repository$IssueConnection$Issue$
 
   String id;
 
+  String login;
+
   @override
-  List<Object> get props => [avatarUrl, id];
+  List<Object> get props => [avatarUrl, id, login];
   Map<String, dynamic> toJson() =>
       _$RepoList$Query$User$RepositoryConnection$Repository$IssueConnection$Issue$UserConnection$UserToJson(
           this);
@@ -221,6 +224,12 @@ class RepoListQuery extends GraphQLQuery<RepoList$Query, RepoListArguments> {
               directives: [],
               selectionSet: SelectionSetNode(selections: [
                 FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null),
+                FieldNode(
                     name: NameNode(value: 'repositories'),
                     alias: null,
                     arguments: [
@@ -243,6 +252,12 @@ class RepoListQuery extends GraphQLQuery<RepoList$Query, RepoListArguments> {
                     directives: [],
                     selectionSet: SelectionSetNode(selections: [
                       FieldNode(
+                          name: NameNode(value: '__typename'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null),
+                      FieldNode(
                           name: NameNode(value: 'totalCount'),
                           alias: null,
                           arguments: [],
@@ -254,6 +269,12 @@ class RepoListQuery extends GraphQLQuery<RepoList$Query, RepoListArguments> {
                           arguments: [],
                           directives: [],
                           selectionSet: SelectionSetNode(selections: [
+                            FieldNode(
+                                name: NameNode(value: '__typename'),
+                                alias: null,
+                                arguments: [],
+                                directives: [],
+                                selectionSet: null),
                             FieldNode(
                                 name: NameNode(value: 'cursor'),
                                 alias: null,
@@ -267,6 +288,12 @@ class RepoListQuery extends GraphQLQuery<RepoList$Query, RepoListArguments> {
                           arguments: [],
                           directives: [],
                           selectionSet: SelectionSetNode(selections: [
+                            FieldNode(
+                                name: NameNode(value: '__typename'),
+                                alias: null,
+                                arguments: [],
+                                directives: [],
+                                selectionSet: null),
                             FieldNode(
                                 name: NameNode(value: 'name'),
                                 alias: null,
@@ -309,6 +336,12 @@ class RepoListQuery extends GraphQLQuery<RepoList$Query, RepoListArguments> {
                                 directives: [],
                                 selectionSet: SelectionSetNode(selections: [
                                   FieldNode(
+                                      name: NameNode(value: '__typename'),
+                                      alias: null,
+                                      arguments: [],
+                                      directives: [],
+                                      selectionSet: null),
+                                  FieldNode(
                                       name: NameNode(value: 'totalCount'),
                                       alias: null,
                                       arguments: [],
@@ -321,6 +354,12 @@ class RepoListQuery extends GraphQLQuery<RepoList$Query, RepoListArguments> {
                                       directives: [],
                                       selectionSet:
                                           SelectionSetNode(selections: [
+                                        FieldNode(
+                                            name: NameNode(value: '__typename'),
+                                            alias: null,
+                                            arguments: [],
+                                            directives: [],
+                                            selectionSet: null),
                                         FieldNode(
                                             name: NameNode(value: 'title'),
                                             alias: null,
@@ -353,6 +392,13 @@ class RepoListQuery extends GraphQLQuery<RepoList$Query, RepoListArguments> {
                                             selectionSet:
                                                 SelectionSetNode(selections: [
                                               FieldNode(
+                                                  name: NameNode(
+                                                      value: '__typename'),
+                                                  alias: null,
+                                                  arguments: [],
+                                                  directives: [],
+                                                  selectionSet: null),
+                                              FieldNode(
                                                   name:
                                                       NameNode(value: 'nodes'),
                                                   alias: null,
@@ -361,6 +407,14 @@ class RepoListQuery extends GraphQLQuery<RepoList$Query, RepoListArguments> {
                                                   selectionSet:
                                                       SelectionSetNode(
                                                           selections: [
+                                                        FieldNode(
+                                                            name: NameNode(
+                                                                value:
+                                                                    '__typename'),
+                                                            alias: null,
+                                                            arguments: [],
+                                                            directives: [],
+                                                            selectionSet: null),
                                                         FieldNode(
                                                             name: NameNode(
                                                                 value:
@@ -380,6 +434,13 @@ class RepoListQuery extends GraphQLQuery<RepoList$Query, RepoListArguments> {
                                                         FieldNode(
                                                             name: NameNode(
                                                                 value: 'id'),
+                                                            alias: null,
+                                                            arguments: [],
+                                                            directives: [],
+                                                            selectionSet: null),
+                                                        FieldNode(
+                                                            name: NameNode(
+                                                                value: 'login'),
                                                             alias: null,
                                                             arguments: [],
                                                             directives: [],

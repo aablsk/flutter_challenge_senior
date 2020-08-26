@@ -25,7 +25,8 @@ RepoList$Query$User$RepositoryConnection$Repository$IssueConnection$Issue$UserCo
         Map<String, dynamic> json) {
   return RepoList$Query$User$RepositoryConnection$Repository$IssueConnection$Issue$UserConnection$User()
     ..avatarUrl = json['avatarUrl']
-    ..id = json['id'] as String;
+    ..id = json['id'] as String
+    ..login = json['login'] as String;
 }
 
 Map<String, dynamic>
@@ -35,6 +36,7 @@ Map<String, dynamic>
         <String, dynamic>{
           'avatarUrl': instance.avatarUrl,
           'id': instance.id,
+          'login': instance.login,
         };
 
 RepoList$Query$User$RepositoryConnection$Repository$IssueConnection$Issue$UserConnection
