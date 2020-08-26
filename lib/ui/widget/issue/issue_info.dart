@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_challenge_senior/api/graphql/generated/repo_issues.api.graphql.dart';
+import 'package:flutter_challenge_senior/data/model/issue.dart';
 import 'package:flutter_challenge_senior/ui/widget/issue/assignee_label.dart';
 import 'package:flutter_challenge_senior/ui/widget/issue/author_label.dart';
 import 'package:flutter_challenge_senior/ui/widget/issue/updated_at_label.dart';
 
 class IssueInfo extends StatelessWidget {
   IssueInfo({Key key, this.issue}) : super(key: key);
-  final RepoIssues$Query$User$Repository$IssueConnection$Issue issue;
+  final Issue issue;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class IssueInfo extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               AssigneeLabel(
-                assignees: issue.assignees.nodes,
+                assignees: issue.assignees,
               ),
               Text(
                 issue.closed ? 'CLOSED' : 'OPEN',

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_challenge_senior/api/graphql/generated/repo_list.api.dart';
+import 'package:flutter_challenge_senior/data/model/repository.dart';
 
 class RepoInfo extends StatelessWidget {
   RepoInfo({Key key, this.repo}) : super(key: key);
-  final RepoList$Query$User$RepositoryConnection$Repository repo;
+  final Repository repo;
 
   @override
   Widget build(BuildContext context) {

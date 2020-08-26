@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 ColorScheme _colorScheme = ColorScheme.dark(
   primary: Colors.indigo[300],
   primaryVariant: Colors.indigo[200],
-  secondary: Colors.deepOrange[400],
-  secondaryVariant: Colors.deepOrange[300],
+  secondary: Colors.deepOrange[300],
+  secondaryVariant: Colors.deepOrange[200],
   background: Color.fromRGBO(24, 24, 24, 1),
   surface: Color.fromRGBO(24, 24, 24, 1),
   brightness: Brightness.dark,

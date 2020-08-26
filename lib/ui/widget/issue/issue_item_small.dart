@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_challenge_senior/api/graphql/generated/repo_list.api.dart';
+import 'package:flutter_challenge_senior/data/model/issue.dart';
 
 class IssueItemSmall extends StatelessWidget {
   IssueItemSmall({Key key, this.issue}) : super(key: key);
 
-  final RepoList$Query$User$RepositoryConnection$Repository$IssueConnection$Issue
-      issue;
+  final Issue issue;
 
   @override
   Widget build(BuildContext context) {
-    final assigneeAvatarUrl = issue?.assignees?.nodes?.length != null &&
-            issue.assignees.nodes.length > 0
-        ? issue.assignees.nodes.first.avatarUrl
-        : null;
+    final assigneeAvatarUrl =
+        issue?.assignees?.length != null && issue.assignees.length > 0
+            ? issue.assignees.first.avatarUrl
+            : null;
     final colorScheme = Theme.of(context).colorScheme;
     if (issue != null) {
       return Container(

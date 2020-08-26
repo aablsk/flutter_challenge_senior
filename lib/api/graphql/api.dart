@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_challenge_senior/api/graphql/generated/repo_issues.api.graphql.dart';
-import 'package:flutter_challenge_senior/api/graphql/generated/user.api.dart';
-import 'package:flutter_challenge_senior/api/graphql/generated/repo_list.api.dart';
+import 'package:flutter_challenge_senior/api/graphql/query/get_repo_issues.dart';
+import 'package:flutter_challenge_senior/api/graphql/query/get_viewer_repos.dart';
 import 'package:flutter_challenge_senior/constants.dart';
 import 'package:graphql/client.dart';
 
@@ -37,18 +36,11 @@ class GraphQLApi {
     if (after != null) variables['after'] = after;
 
     final options = QueryOptions(
-      documentNode: RepoListQuery().document,
+      documentNode: gql(getViewerRepos),
       variables: variables,
       fetchPolicy: FetchPolicy.cacheAndNetwork,
     );
 
-    return this._client.query(options);
-  }
-
-  Future<QueryResult> getLogin() async {
-    final options = QueryOptions(
-      documentNode: GetLoginQuery().document,
-    );
     return this._client.query(options);
   }
 
@@ -58,7 +50,7 @@ class GraphQLApi {
     };
 
     final options = QueryOptions(
-      documentNode: RepoIssuesQuery().document,
+      documentNode: gql(getRepoIssues),
       variables: variables,
       fetchPolicy: FetchPolicy.cacheAndNetwork,
     );

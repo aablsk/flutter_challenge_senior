@@ -1,5 +1,6 @@
-import 'package:flutter_challenge_senior/api/graphql/generated/repo_list.api.dart';
 import 'package:flutter_challenge_senior/data/graphql_repository.dart';
+import 'package:flutter_challenge_senior/data/model/repository.dart';
+import 'package:flutter_challenge_senior/data/model/viewer_repos_result.dart';
 import 'package:flutter_challenge_senior/service_locator.dart';
 import 'package:flutter_challenge_senior/state/list_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -7,44 +8,53 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 class RepoListModel extends ListModel {
   // TODO: should probably decouple GraphQL classes from app logic
   final _gqlRepo = sl.get<GraphQLRepository>();
-  RepoList$Query$User$RepositoryConnection _result;
+  ViewerReposResultData _result;
   bool _isLoading = false;
   String _errorMessage;
 
-  UnmodifiableListView<RepoList$Query$User$RepositoryConnection$Repository>
-      get repos => UnmodifiableListView(_result?.nodes);
+  UnmodifiableListView<Repository> get items =>
+      UnmodifiableListView(_result.repos);
 
-  int get totalCount => _result.totalCount;
+  int get totalCount => _result.repoCount;
   bool get isLoading => _isLoading;
   bool get hasError => _errorMessage != null;
-  bool get hasData => _result != null && repos.length > 0;
+  bool get hasData => _result != null && items.length > 0;
   String get errorMessage => _errorMessage;
 
   RepoListModel() {
     updateData();
   }
 
-  void beforeRequest() {
+  void _processDataEvent(ViewerReposResultData value) {
+    _result = value;
+    _isLoading = false;
+    notifyListeners();
+  }
+
+  void _processLoadingEvent() {
     _isLoading = true;
     _errorMessage = null;
     notifyListeners();
   }
 
-  void afterRequest() {
+  void _processErrorEvent(String errorMessage) {
     _isLoading = false;
+    _errorMessage = errorMessage;
     notifyListeners();
   }
 
   Future<void> updateData() async {
-    beforeRequest();
-
-    try {
-      final result = (await _gqlRepo.getRepoList()).viewer.repositories;
-      this._result = result;
-    } catch (e) {
-      _errorMessage = e.toString();
+    // handle runtime errors of stream
+    final cleanStream = _gqlRepo.getRepoList().handleError((err) {
+      _errorMessage = err.toString();
+    });
+    // handle stream events
+    await for (var result in cleanStream) {
+      result.map(
+        data: (value) => _processDataEvent(value),
+        loading: (_) => _processLoadingEvent(),
+        error: (value) => _processErrorEvent(value.message),
+      );
     }
-    afterRequest();
-    return;
   }
 }

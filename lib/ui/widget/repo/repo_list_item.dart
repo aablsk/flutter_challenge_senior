@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_challenge_senior/api/graphql/generated/repo_list.api.dart';
+import 'package:flutter_challenge_senior/data/model/repository.dart';
 import 'package:flutter_challenge_senior/ui/widget/repo/recent_issue_list.dart';
 import 'package:flutter_challenge_senior/ui/widget/repo/repo_info.dart';
 
 class RepoListItem extends StatelessWidget {
   RepoListItem({Key key, @required this.repo}) : super(key: key);
 
-  final RepoList$Query$User$RepositoryConnection$Repository repo;
+  final Repository repo;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class RepoListItem extends StatelessWidget {
             SizedBox(
               height: 16,
             ),
-            repo.issues.nodes.length > 0
+            repo.issues.length > 0
                 ? RecentIssueList(
                     repo: repo,
                   )

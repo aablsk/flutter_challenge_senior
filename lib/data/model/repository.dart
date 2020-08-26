@@ -1,19 +1,27 @@
-// import 'package:flutter_challenge_senior/api/graphql/generated/repo_list.api.dart';
-// TODO: REMOVE OR USE
+import 'package:flutter_challenge_senior/data/model/issue.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-// import 'package:freezed_annotation/freezed_annotation.dart';
-// import 'package:flutter/foundation.dart';
+part 'repository.freezed.dart';
 
-// part 'repository.freezed.dart';
+@freezed
+abstract class Repository with _$Repository {
+  const factory Repository({
+    @required String name,
+    String description,
+    List<Issue> issues,
+    @required int issueCount,
+    String cursor,
+    String id,
+  }) = _Repository;
 
-// @freezed
-// abstract class ListRepoResult with _$ListRepoResult {
-//   const factory ListRepoResult(RepoList$Query value) = Data;
-//   const factory ListRepoResult.loading() = Loading;
-//   const factory ListRepoResult.error([String message]) = ErrorDetails;
-// }
-
-// @freezed
-// abstract class RepositoryList with _$RepositoryList {
-//   const factory ({})
-// }
+  static Repository fromGqlResult(dynamic repo) {
+    final issues = repo['issues']['nodes'] as List<dynamic>;
+    return Repository(
+      id: repo['id'],
+      name: repo['name'],
+      issueCount: repo['issues']['totalCount'],
+      description: repo['description'],
+      issues: issues.map(Issue.fromGqlResult).toList(),
+    );
+  }
+}
