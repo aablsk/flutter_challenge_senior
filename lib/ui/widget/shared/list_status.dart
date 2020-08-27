@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_challenge_senior/state/list_view_model.dart';
+import 'package:flutter_challenge_senior/state/shared/list_view_model.dart';
 import 'package:flutter_challenge_senior/ui/widget/shared/list_status_error.dart';
 import 'package:flutter_challenge_senior/ui/widget/shared/list_status_loading.dart';
 

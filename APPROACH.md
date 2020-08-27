@@ -110,6 +110,7 @@ Very ambiguous description. Common login functionalities could be:
 
 *ASSUMPTION* The capability to build a sensible Login UI shall be demonstrated. Additional functionality like password-reset will be built into UI but not have any functionality attached to it. Specifics depend on GitHub API requirements.
 *DECISION* After taking a look at the GitHub GraphQL API it became clear that GitHub OAuth flow must be used. In order to still do some work for a login screen I decided to at least add a username input + validation to the login form as it can be passed to the OAuth flow.
+*DECISION* Since this shall be focused on frontend implementation, I will not implement my own OAuth flow (as this should include a backend component). I will instead use the frontend-only implementation from github_sign_in. This is not production-grade.
 
 
 ### Repository List

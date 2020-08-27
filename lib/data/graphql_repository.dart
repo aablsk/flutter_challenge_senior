@@ -5,6 +5,7 @@ import 'package:flutter_challenge_senior/data/model/repo_issues_result.dart';
 import 'package:flutter_challenge_senior/data/model/repository.dart';
 import 'package:flutter_challenge_senior/data/model/viewer_repos_result.dart';
 import 'package:flutter_challenge_senior/service_locator.dart';
+import 'package:graphql/client.dart';
 
 /**
  * This class is used to consume GraphQLApi and transform results into streams
@@ -19,21 +20,10 @@ class GraphQLRepository {
       // TODO: currently no pagination supported here
       final result = await _api.getReposForViewer(first: first);
 
-      if (result.hasException) {
-        if (result?.exception?.graphqlErrors != null &&
-            result.exception.graphqlErrors.length > 0) {
-          yield ViewerReposResult.error(
-            result.exception.graphqlErrors.first.message,
-          );
-          return;
-        }
-
-        if (result?.exception?.clientException != null) {
-          yield ViewerReposResult.error(
-            result.exception.clientException.message,
-          );
-          return;
-        }
+      final errorMessage = _getErrorMessage(result);
+      if (errorMessage != null) {
+        yield ViewerReposResult.error(errorMessage);
+        return;
       }
 
       if (result.data != null) {
@@ -58,21 +48,10 @@ class GraphQLRepository {
       // TODO: currently no pagination supported here
       final result = await _api.getIssuesByRepoName(repoName: repoName);
 
-      if (result.hasException) {
-        if (result?.exception?.graphqlErrors != null &&
-            result.exception.graphqlErrors.length > 0) {
-          yield RepoIssuesResult.error(
-            result.exception.graphqlErrors.first.message,
-          );
-          return;
-        }
-
-        if (result?.exception?.clientException != null) {
-          yield RepoIssuesResult.error(
-            result.exception.clientException.message,
-          );
-          return;
-        }
+      final errorMessage = _getErrorMessage(result);
+      if (errorMessage != null) {
+        yield RepoIssuesResult.error(errorMessage);
+        return;
       }
 
       if (result.data != null) {
@@ -86,5 +65,19 @@ class GraphQLRepository {
       yield RepoIssuesResult.error(e.toString());
       return;
     }
+  }
+
+  String _getErrorMessage(QueryResult result) {
+    if (result.hasException) {
+      if (result?.exception?.graphqlErrors != null &&
+          result.exception.graphqlErrors.length > 0) {
+        return result.exception.graphqlErrors.first.message;
+      }
+
+      if (result?.exception?.clientException != null) {
+        return result.exception.clientException.message;
+      }
+    }
+    return null;
   }
 }

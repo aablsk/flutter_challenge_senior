@@ -2,7 +2,7 @@ import 'package:flutter_challenge_senior/data/graphql_repository.dart';
 import 'package:flutter_challenge_senior/data/model/repository.dart';
 import 'package:flutter_challenge_senior/data/model/viewer_repos_result.dart';
 import 'package:flutter_challenge_senior/service_locator.dart';
-import 'package:flutter_challenge_senior/state/list_view_model.dart';
+import 'package:flutter_challenge_senior/state/shared/list_view_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 class RepoListViewModel extends ListViewModel {
