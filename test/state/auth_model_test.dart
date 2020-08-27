@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_challenge_senior/data_provider/graphql/api.dart';
 import 'package:flutter_challenge_senior/data_provider/graphql/auth.dart';
 import 'package:flutter_challenge_senior/service_locator.dart';
 import 'package:flutter_challenge_senior/state/auth_model.dart';
@@ -32,6 +33,7 @@ main() {
     authModel.removeListener(notifyListener.callback);
     authModel = null;
     notifyListener = null;
+    unregisterOnLogout();
     sl.unregister<GithubAuthClient>();
   });
 
