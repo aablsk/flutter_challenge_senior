@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_challenge_senior/api/graphql/api.dart';
+import 'package:flutter_challenge_senior/data_provider/graphql/api.dart';
 import 'package:flutter_challenge_senior/data/model/issue.dart';
 import 'package:flutter_challenge_senior/data/model/repo_issues_result.dart';
 import 'package:flutter_challenge_senior/data/model/repository.dart';

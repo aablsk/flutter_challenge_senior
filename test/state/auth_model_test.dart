@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_challenge_senior/api/graphql/auth.dart';
+import 'package:flutter_challenge_senior/data_provider/graphql/auth.dart';
 import 'package:flutter_challenge_senior/service_locator.dart';
 import 'package:flutter_challenge_senior/state/auth_model.dart';
 import 'package:github_sign_in/github_sign_in.dart';

@@ -1,5 +1,5 @@
-import 'package:flutter_challenge_senior/api/graphql/api.dart';
-import 'package:flutter_challenge_senior/api/graphql/auth.dart';
+import 'package:flutter_challenge_senior/data_provider/graphql/api.dart';
+import 'package:flutter_challenge_senior/data_provider/graphql/auth.dart';
 import 'package:flutter_challenge_senior/data/graphql_repository.dart';
 import 'package:get_it/get_it.dart';
 

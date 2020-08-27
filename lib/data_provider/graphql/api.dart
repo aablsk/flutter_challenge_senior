@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_challenge_senior/api/graphql/query/get_repo_issues.dart';
-import 'package:flutter_challenge_senior/api/graphql/query/get_viewer_repos.dart';
+import 'package:flutter_challenge_senior/data_provider/graphql/query/get_repo_issues.dart';
+import 'package:flutter_challenge_senior/data_provider/graphql/query/get_viewer_repos.dart';
 import 'package:flutter_challenge_senior/constants.dart';
 import 'package:graphql/client.dart';
 
