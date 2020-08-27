@@ -11,6 +11,7 @@ class LoginInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       key: Key('login_input_username'),
+      cursorColor: Theme.of(context).colorScheme.primaryVariant,
       decoration: InputDecoration(
         labelText: 'username',
         prefixIcon: Padding(
